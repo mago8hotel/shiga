@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>古民家宿 孫八 | 一棟貸切・里山の隠れ家</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --brown: #5c3d2e;
+      --light-brown: #8b6349;
+      --cream: #f5f0e8;
+      --warm-white: #fdfaf5;
+      --green: #4a6741;
+      --gold: #c8a96e;
+      --text: #2c1a0e;
+    }
+
+    body {
+      font-family: 'Hiragino Mincho ProN', 'Yu Mincho', Georgia, serif;
+      background: var(--warm-white);
+      color: var(--text);
+      line-height: 1.9;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(28, 14, 7, 0.85);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 40px;
+    }
+
+    .logo {
+      color: var(--gold);
+      font-size: 1.4rem;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+    }
+
+    nav a {
+      color: #e8dcc8;
+      text-decoration: none;
+      margin-left: 28px;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--gold); }
+
+    /* ===== HERO ===== */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.6) 100%),
+                  url('top.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      letter-spacing: 0.25em;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+      margin-bottom: 24px;
+      font-weight: normal;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      letter-spacing: 0.15em;
+      color: #e8dcc8;
+      margin-bottom: 48px;
+      max-width: 600px;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      padding: 14px 44px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.2em;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+
+    .hero-btn:hover {
+      background: var(--gold);
+      color: var(--text);
+    }
+
+    /* ===== SECTIONS ===== */
+    section { padding: 100px 20px; }
+
+    .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: normal;
+      letter-spacing: 0.15em;
+      color: var(--brown);
+      margin-bottom: 40px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin-bottom: 40px;
+    }
+
+    p { margin-bottom: 1.4em; font-size: 1.05rem; }
+
+    /* ===== ABOUT ===== */
+    .about { background: var(--cream); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+
+    .about-img-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #8b6349 0%, #5c3d2e 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e8dcc8;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      border-radius: 2px;
+    }
+
+    /* ===== FEATURES ===== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 20px;
+    }
+
+    .feature-card {
+      text-align: center;
+      padding: 40px 24px;
+      border: 1px solid #e0d8cc;
+      background: white;
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      letter-spacing: 0.1em;
+      color: var(--brown);
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: #6b5040;
+      margin: 0;
+    }
+
+    /* ===== EXPERIENCE ===== */
+    .experience { background: var(--brown); color: #e8dcc8; }
+
+    .experience h2 { color: var(--gold); }
+
+    .experience-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 16px;
+    }
+
+    .exp-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 24px;
+      background: rgba(255,255,255,0.07);
+      border-left: 2px solid var(--gold);
+    }
+
+    .exp-item .icon { font-size: 1.8rem; flex-shrink: 0; }
+
+    .exp-item h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      color: var(--gold);
+      margin-bottom: 6px;
+      letter-spacing: 0.08em;
+    }
+
+    .exp-item p { font-size: 0.9rem; margin: 0; color: #c8baa8; }
+
+    /* ===== AMENITIES ===== */
+    .amenities { background: var(--cream); }
+
+    .amenity-groups {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .amenity-group h3 {
+      font-size: 1rem;
+      font-weight: normal;
+      letter-spacing: 0.12em;
+      color: var(--brown);
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 10px;
+      margin-bottom: 16px;
+    }
+
+    .amenity-group ul {
+      list-style: none;
+      font-size: 0.9rem;
+      color: #5c3d2e;
+    }
+
+    .amenity-group li {
+      padding: 4px 0;
+      border-bottom: 1px solid #e0d8cc;
+    }
+
+    .amenity-group li::before {
+      content: '・';
+      color: var(--gold);
+    }
+
+    /* ===== GAMES ===== */
+    .games-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .game-tag {
+      background: var(--cream);
+      border: 1px solid #c8a96e;
+      color: var(--brown);
+      padding: 6px 16px;
+      font-size: 0.88rem;
+      letter-spacing: 0.05em;
+      border-radius: 20px;
+    }
+
+    /* ===== INFO ===== */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .info-box {
+      padding: 32px;
+      background: white;
+      border: 1px solid #e0d8cc;
+    }
+
+    .info-box h3 {
+      font-size: 1rem;
+      font-weight: normal;
+      color: var(--brown);
+      letter-spacing: 0.12em;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--gold);
+    }
+
+    .info-box p, .info-box li {
+      font-size: 0.92rem;
+      color: #5c3d2e;
+      margin-bottom: 8px;
+    }
+
+    .info-box ul { list-style: none; }
+    .info-box li::before { content: '▸ '; color: var(--gold); }
+
+    /* ===== CTA ===== */
+    .cta {
+      background: linear-gradient(135deg, var(--brown) 0%, #3a2518 100%);
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .cta h2 { color: var(--gold); margin-bottom: 16px; }
+
+    .cta p { color: #c8baa8; margin-bottom: 40px; font-size: 1.05rem; }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 16px 60px;
+      background: var(--gold);
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.2em;
+      font-size: 1rem;
+      transition: all 0.3s;
+      margin: 8px;
+    }
+
+    .cta-btn:hover { background: #e8c87a; }
+
+    .cta-btn.outline {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+    }
+
+    .cta-btn.outline:hover { background: var(--gold); color: var(--text); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #1a0e07;
+      color: #7a6858;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+    }
+
+    footer .footer-name {
+      color: var(--gold);
+      font-size: 1.2rem;
+      letter-spacing: 0.2em;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    footer .license {
+      margin-top: 20px;
+      font-size: 0.78rem;
+      color: #5a4838;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      header { padding: 14px 20px; }
+      nav { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .experience-list { grid-template-columns: 1fr; }
+      .amenity-groups { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" href="#">孫 八</a>
+  <nav>
+    <a href="#about">宿について</a>
+    <a href="#experience">体験</a>
+    <a href="#amenities">設備</a>
+    <a href="#games">遊び</a>
+    <a href="#info">ご案内</a>
+    <a href="#booking">予約</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-sub">KOMINKA YADO MAGO8</span>
+  <h1>古民家宿　孫八</h1>
+  <p class="hero-tagline">築120年の一棟貸切。里山の静けさと、満天の星空の中へ。</p>
+  <a href="#booking" class="hero-btn">ご予約はこちら</a>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img-placeholder">
+        古民家の写真
+      </div>
+      <div>
+        <span class="section-label">ABOUT</span>
+        <h2>孫八について</h2>
+        <div class="divider"></div>
+        <p>築120年の古民家を一棟貸切で楽しむ宿「孫八」。最大15名まで宿泊でき、里山の静けさと満天の星空、清流のせせらぎに包まれる完全プライベート空間です。</p>
+        <p>テレビのないゆったりとした時間の中で、アナログゲームや家族との会話を思う存分お楽しみいただけます。</p>
+        <p>都会の喧騒を離れ、心がほどけるようなひとときを。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-inner">
+    <span class="section-label">FEATURES</span>
+    <h2>孫八の特徴</h2>
+    <div class="divider"></div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🏯</span>
+        <h3>築120年 古民家</h3>
+        <p>歴史ある古民家をそのままに。梁や土間が紡ぐ、懐かしくも非日常な空間。</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🌟</span>
+        <h3>完全一棟貸切</h3>
+        <p>最大15名まで。家族・グループで全棟を独占できる完全プライベート空間。</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🌿</span>
+        <h3>里山の自然</h3>
+        <p>満天の星空、清流のせせらぎ、蛍の光。四季折々の里山が五感を満たします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="section-inner">
+    <span class="section-label">EXPERIENCE</span>
+    <h2>体験できること</h2>
+    <div class="divider"></div>
+    <div class="experience-list">
+      <div class="exp-item">
+        <span class="icon">🕯️</span>
+        <div>
+          <h3>洞窟探検ツアー</h3>
+          <p>地元ガイドが案内する、秘境の洞窟探検。非日常の冒険体験を。</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <span class="icon">🌲</span>
+        <div>
+          <h3>里山散策ツアー</h3>
+          <p>地元ガイドと歩く里山。自然の息吹と地域の文化を感じるひととき。</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <span class="icon">🪵</span>
+        <div>
+          <h3>木工旋盤体験</h3>
+          <p>木工職人が直接指導。世界にひとつだけの木工作品を作ろう。</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <span class="icon">✨</span>
+        <div>
+          <h3>蛍鑑賞（季節限定）</h3>
+          <p>清流に舞う蛍の光。夏の夜だけの幻想的な光景をお楽しみください。</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <span class="icon">🐛</span>
+        <div>
+          <h3>虫取り体験</h3>
+          <p>虫取りセット完備。子どもたちが夢中になる、里山の生き物探し。</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <span class="icon">🔗</span>
+        <div>
+          <h3>知恵の輪チャレンジ</h3>
+          <p>木工職人手作りの知恵の輪。解けた人にはプレゼントあり！</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section class="amenities" id="amenities">
+  <div class="section-inner">
+    <span class="section-label">AMENITIES</span>
+    <h2>設備・アメニティ</h2>
+    <div class="divider"></div>
+    <div class="amenity-groups">
+      <div class="amenity-group">
+        <h3>設備</h3>
+        <ul>
+          <li>超高速インターネット Starlink</li>
+          <li>ドライヤー（Dyson）</li>
+          <li>置きドライヤー（PAUZ）</li>
+          <li>フェイススチーマー（Panasonic）</li>
+          <li>美顔ローラー（ReFa）</li>
+          <li>洗濯機・乾燥機</li>
+          <li>冷蔵庫</li>
+          <li>キーBOX（無人チェックイン）</li>
+          <li>無料駐車場（4台）</li>
+          <li>布団15組</li>
+        </ul>
+      </div>
+      <div class="amenity-group">
+        <h3>バス・洗面</h3>
+        <ul>
+          <li>シャンプー（TSUBAKI）</li>
+          <li>コンディショナー（TSUBAKI）</li>
+          <li>ボディーソープ（Dove）</li>
+          <li>バスタオル</li>
+          <li>フェイスタオル</li>
+          <li>ボディータオル</li>
+        </ul>
+      </div>
+      <div class="amenity-group">
+        <h3>アメニティ</h3>
+        <ul>
+          <li>歯ブラシ（子供用あり）</li>
+          <li>化粧水・乳液</li>
+          <li>クレンジング</li>
+          <li>パック</li>
+          <li>カミソリ・シェービングジェル</li>
+          <li>ヘアブラシ・ヘアゴム</li>
+          <li>コットン・綿棒</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GAMES -->
+<section id="games">
+  <div class="section-inner">
+    <span class="section-label">GAMES & PLAY</span>
+    <h2>遊びのラインナップ</h2>
+    <div class="divider"></div>
+    <p>テレビのない宿だからこそ、人と人が向き合う時間を。大人も子どもも夢中になれるゲームを豊富にご用意しています。</p>
+    <div class="games-wrap">
+      <span class="game-tag">人生ゲーム</span>
+      <span class="game-tag">UNO</span>
+      <span class="game-tag">トランプ</span>
+      <span class="game-tag">麻雀</span>
+      <span class="game-tag">オセロ</span>
+      <span class="game-tag">ジェンガ</span>
+      <span class="game-tag">コヨーテ</span>
+      <span class="game-tag">カタカナーシ</span>
+      <span class="game-tag">ワードウルフ</span>
+      <span class="game-tag">百人一首</span>
+      <span class="game-tag">花札</span>
+      <span class="game-tag">将棋</span>
+      <span class="game-tag">ザ・マインド</span>
+      <span class="game-tag">ワニワニパックン</span>
+      <span class="game-tag">ビンゴ</span>
+      <span class="game-tag">たたいてかぶってジャンケンポン</span>
+      <span class="game-tag">簡易竹馬</span>
+      <span class="game-tag">なわとび</span>
+      <span class="game-tag">虫取りセット</span>
+      <span class="game-tag">チョーク（屋外落書き）</span>
+      <span class="game-tag">木工職人の知恵の輪</span>
+    </div>
+  </div>
+</section>
+
+<!-- INFO -->
+<section id="info" style="background: var(--cream);">
+  <div class="section-inner">
+    <span class="section-label">INFORMATION</span>
+    <h2>ご利用案内</h2>
+    <div class="divider"></div>
+    <div class="info-grid">
+      <div class="info-box">
+        <h3>チェックイン・アウト</h3>
+        <ul>
+          <li>キーBOXにて無人チェックイン可能</li>
+          <li>最大15名まで宿泊可能</li>
+          <li>布団15組完備</li>
+        </ul>
+      </div>
+      <div class="info-box">
+        <h3>禁煙・ルール</h3>
+        <ul>
+          <li>施設内は全面禁煙</li>
+          <li>喫煙は屋外にて（火の取り扱いに注意）</li>
+          <li>屋根裏部屋への立入禁止（転倒危険）</li>
+          <li>自然の虫が出る場合があります</li>
+        </ul>
+      </div>
+      <div class="info-box">
+        <h3>インターネット・通信</h3>
+        <ul>
+          <li>高速衛星インターネット「Starlink」完備</li>
+          <li>テレビはございません</li>
+          <li>携帯電話の電波が繋がりにくい場合があります</li>
+        </ul>
+      </div>
+      <div class="info-box">
+        <h3>アクセス・駐車場</h3>
+        <ul>
+          <li>無料駐車場あり（4台）</li>
+          <li>冬季はスタッドレスタイヤ必須</li>
+          <li>詳細は公式SNSにてご確認ください</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / BOOKING -->
+<section class="cta" id="booking">
+  <div class="section-inner">
+    <span class="section-label">RESERVATION</span>
+    <h2>ご予約・お問い合わせ</h2>
+    <p>Airbnbよりご予約いただけます。<br>最新情報・お得な情報は公式SNSをご覧ください。</p>
+    <a href="https://www.airbnb.com/h/mago8" class="cta-btn" target="_blank" rel="noopener">Airbnbで予約する</a>
+    <a href="https://www.instagram.com/" class="cta-btn outline" target="_blank" rel="noopener">公式SNSを見る</a>
+    <p style="margin-top: 32px; font-size: 0.85rem; color: #7a6858;">「五感で楽しむ古民家宿 孫八」で検索してみてください。</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">古民家宿　孫八</span>
+  <p>里山の静けさと、満天の星空の中へ。</p>
+  <p class="license">旅館業法許可番号：滋賀県長浜保健所　滋賀県指令長保第13号</p>
+  <p style="margin-top: 16px;">© 2024 古民家宿 孫八. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
