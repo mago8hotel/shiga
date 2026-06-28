@@ -56,10 +56,19 @@
     nav a:hover { color: var(--gold); }
 
     /* ===== HERO ===== */
+    @keyframes heroZoom {
+      0%   { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+    @keyframes fadeUp {
+      0%   { opacity: 0; transform: translateY(28px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
     .hero {
       height: 100vh;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.6) 100%),
-                  url('top.jpg') center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -68,6 +77,32 @@
       color: white;
       padding: 20px;
     }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('top.jpg') center/cover no-repeat;
+      animation: heroZoom 8s ease-out forwards;
+      z-index: 0;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.6) 100%);
+      z-index: 1;
+    }
+
+    .hero > * { position: relative; z-index: 2; }
+
+    .hero-sub    { animation: fadeUp 1s ease 0.3s both; }
+    .hero h1     { animation: fadeUp 1s ease 0.7s both; }
+    .hero img    { animation: fadeUp 1s ease 1.0s both; }
+    .hero-main-copy { animation: fadeUp 1s ease 1.3s both; }
+    .hero-tagline   { animation: fadeUp 1s ease 1.6s both; }
+    .hero-btn       { animation: fadeUp 1s ease 1.9s both; }
 
     .hero-sub {
       font-size: 0.95rem;
@@ -471,7 +506,7 @@
 
 <!-- HEADER -->
 <header>
-  <a class="logo" href="#">孫 八</a>
+  <a class="logo" href="#"><img src="moji.jpg" alt="孫八" style="height: 38px; mix-blend-mode: screen; filter: invert(1);"></a>
   <nav>
     <a href="#about">宿について</a>
     <a href="#experience">体験</a>
@@ -486,7 +521,7 @@
 <section class="hero">
   <span class="hero-sub">KOMINKA YADO MAGO8</span>
   <h1>古民家宿</h1>
-  <img src="moji.jpg" alt="孫八" style="width: clamp(260px, 55vw, 680px); margin-bottom: 24px; mix-blend-mode: multiply; filter: drop-shadow(0 2px 12px rgba(255,255,255,0.6));">
+  <img src="moji.jpg" alt="孫八" style="width: clamp(260px, 55vw, 680px); margin-bottom: 24px; mix-blend-mode: screen; filter: invert(1) drop-shadow(0 2px 20px rgba(255,255,255,0.3));">
   <p class="hero-main-copy">泊まるだけじゃない。みんなで過ごすための一棟貸し。</p>
   <p class="hero-tagline">築120年の一棟貸切。里山の静けさと、満天の星空の中へ。</p>
   <a href="#booking" class="hero-btn">ご予約はこちら</a>
