@@ -84,6 +84,15 @@
       font-weight: normal;
     }
 
+    .hero-main-copy {
+      font-size: clamp(1.2rem, 3vw, 1.7rem);
+      letter-spacing: 0.1em;
+      color: #ffffff;
+      margin-bottom: 16px;
+      font-weight: normal;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+    }
+
     .hero-tagline {
       font-size: clamp(1rem, 2.5vw, 1.25rem);
       letter-spacing: 0.15em;
@@ -382,6 +391,35 @@
       color: #5a4838;
     }
 
+    /* ===== REVIEWS ===== */
+    .reviews { background: var(--brown); overflow: hidden; padding: 80px 0; }
+    .reviews .section-inner { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+    .reviews h2 { color: var(--gold); }
+    .reviews .section-label { color: var(--gold); }
+    .reviews-track-wrap { overflow: hidden; margin-top: 40px; }
+    .reviews-track {
+      display: flex;
+      gap: 24px;
+      animation: slide 30s linear infinite;
+      width: max-content;
+    }
+    .reviews-track:hover { animation-play-state: paused; }
+    @keyframes slide {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .review-card {
+      background: rgba(255,255,255,0.08);
+      border-left: 2px solid var(--gold);
+      padding: 28px 28px;
+      width: 320px;
+      flex-shrink: 0;
+      border-radius: 2px;
+    }
+    .review-stars { color: var(--gold); font-size: 1rem; margin-bottom: 12px; letter-spacing: 2px; }
+    .review-text { color: #e8dcc8; font-size: 0.92rem; line-height: 1.8; margin-bottom: 16px; }
+    .review-author { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.1em; }
+
     /* ===== GALLERY ===== */
     .gallery { background: var(--warm-white); }
 
@@ -448,6 +486,7 @@
 <section class="hero">
   <span class="hero-sub">KOMINKA YADO MAGO8</span>
   <h1>古民家宿　孫八</h1>
+  <p class="hero-main-copy">泊まるだけじゃない。みんなで過ごすための一棟貸し。</p>
   <p class="hero-tagline">築120年の一棟貸切。里山の静けさと、満天の星空の中へ。</p>
   <a href="#booking" class="hero-btn">ご予約はこちら</a>
 </section>
@@ -464,6 +503,71 @@
         <p>築120年の古民家を一棟貸切で楽しむ宿「孫八」。最大15名まで宿泊でき、里山の静けさと満天の星空、清流のせせらぎに包まれる完全プライベート空間です。</p>
         <p>テレビのないゆったりとした時間の中で、アナログゲームや家族との会話を思う存分お楽しみいただけます。</p>
         <p>都会の喧騒を離れ、心がほどけるようなひとときを。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="section-inner">
+    <span class="section-label">GUEST REVIEWS</span>
+    <h2>お客様の声</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="reviews-track-wrap">
+    <div class="reviews-track">
+      <!-- 前半 -->
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">古民家の雰囲気が最高でした。梁や土間など、普段では体験できない空間で家族全員大満足。また必ず来ます！</p>
+        <span class="review-author">— ゲスト（家族旅行）</span>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">一棟貸しなので気兼ねなくくつろげました。アナログゲームが豊富で、子どもたちが夢中になっていました。</p>
+        <span class="review-author">— ゲスト（子連れ旅行）</span>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Starlinkのおかげでネットも快適。自然の中でリモートワークしながらリフレッシュできました。</p>
+        <span class="review-author">— ゲスト（ワーケーション）</span>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">里山の静けさと満天の星空に感動。洞窟探検ツアーも最高で、一生の思い出になりました。</p>
+        <span class="review-author">— ゲスト（友人グループ）</span>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">アメニティが充実していて、手ぶらで来ても安心でした。また季節を変えて訪れたいです。</p>
+        <span class="review-author">— ゲスト（カップル旅行）</span>
+      </div>
+      <!-- 後半（ループ用に複製） -->
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">古民家の雰囲気が最高でした。梁や土間など、普段では体験できない空間で家族全員大満足。また必ず来ます！</p>
+        <span class="review-author">— ゲスト（家族旅行）</span>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">一棟貸しなので気兼ねなくくつろげました。アナログゲームが豊富で、子どもたちが夢中になっていました。</p>
+        <span class="review-author">— ゲスト（子連れ旅行）</span>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Starlinkのおかげでネットも快適。自然の中でリモートワークしながらリフレッシュできました。</p>
+        <span class="review-author">— ゲスト（ワーケーション）</span>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">里山の静けさと満天の星空に感動。洞窟探検ツアーも最高で、一生の思い出になりました。</p>
+        <span class="review-author">— ゲスト（友人グループ）</span>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">アメニティが充実していて、手ぶらで来ても安心でした。また季節を変えて訪れたいです。</p>
+        <span class="review-author">— ゲスト（カップル旅行）</span>
       </div>
     </div>
   </div>
