@@ -517,16 +517,19 @@
       100% { transform: translateX(-50%); }
     }
     .review-card {
-      background: rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.07);
       border-left: 2px solid var(--gold);
-      padding: 28px 28px;
-      width: 320px;
+      padding: 32px 32px;
+      width: 420px;
       flex-shrink: 0;
       border-radius: 2px;
     }
-    .review-stars { color: var(--gold); font-size: 1rem; margin-bottom: 12px; letter-spacing: 2px; }
-    .review-text { color: #e8dcc8; font-size: 0.92rem; line-height: 1.8; margin-bottom: 16px; }
-    .review-author { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.1em; }
+    .review-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+    .review-stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; }
+    .review-date { color: #8a7a6a; font-size: 0.8rem; }
+    .review-attr { color: var(--gold); font-size: 0.78rem; background: rgba(200,169,110,0.15); padding: 2px 10px; border-radius: 20px; }
+    .review-text { color: #e8dcc8; font-size: 0.9rem; line-height: 1.9; margin-bottom: 0; white-space: pre-line; }
+    .review-author { display: none; }
 
     /* ===== GALLERY ===== */
     .gallery { background: var(--warm-white); }
@@ -851,55 +854,114 @@
   <div class="reviews-track-wrap">
     <div class="reviews-track">
       <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">古民家の雰囲気が最高でした。梁や土間など、普段では体験できない空間で家族全員大満足。また必ず来ます！</p>
-        <span class="review-author">— ゲスト（家族旅行）</span>
+        <div class="review-meta">
+          <span class="review-stars">★★★★★</span>
+          <span class="review-date">2025年10月</span>
+          <span class="review-attr">お子様連れ</span>
+        </div>
+        <p class="review-text">この度はありがとうございました。
+予約してから当日まで、オーナーさんがとても親切に丁寧に対応してくださり安心して当日をむかえることができました！
+大人数で利用させていただきましたが、食器類や水回りの設備が充実していて快適に過ごせました(^^)また当日はあいにくの天気でしたが、人生ゲームやピコピコハンマーなど種類豊富な玩具やボードゲームのおかげで子ども達は飽きることなく楽しんでいました😆
+散策ツアーでは、担当の方がコースや時間について調整してくださり、小さい子どもがいても安心して楽しむことができました！洞窟へも案内していただき、子どもも大人も大盛り上がりでした。自然をたくさん感じることができるのでおすすめです🤗✨
+違う季節にもまた利用させていただきたいです🙇</p>
       </div>
       <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">一棟貸しなので気兼ねなくくつろげました。アナログゲームが豊富で、子どもたちが夢中になっていました。</p>
-        <span class="review-author">— ゲスト（子連れ旅行）</span>
+        <div class="review-meta">
+          <span class="review-stars">★★★★★</span>
+          <span class="review-date">2025年8月</span>
+          <span class="review-attr">お子様連れ</span>
+        </div>
+        <p class="review-text">友人家族3世帯で宿泊させていただきました。
+となりのトトロに出てくるような雰囲気のお部屋とリノベーションされてとても綺麗な水回りで、とても快適に楽しく過ごすことができました。
+特にホストの皆様からの心遣いでご準備いただいたアメニティ、子供たちへのお菓子に友人共々、感動しました。
+
+また掲載されていたボードゲームやカードゲームのおかげで、子供たちも飽きることなくずっと遊び続けることができ、非常に楽しく過ごすことができました。
+川遊びや自然探検、天体観測など、時間が足りず体験できなかったことが多いので、また宿泊させてもらえたらと皆で話しておりました。</p>
       </div>
       <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">里山の静けさと満天の星空に感動。洞窟探検ツアーも最高で、一生の思い出になりました。</p>
-        <span class="review-author">— ゲスト（友人グループ）</span>
+        <div class="review-meta">
+          <span class="review-stars">★★★★★</span>
+          <span class="review-attr">ご家族・大人数におすすめ</span>
+        </div>
+        <p class="review-text">楽しみました😊
+
+コミュニケーションもとても優しくてオーナーさんの愛を感じる素敵な宿です。
+ご家族や大人数での利用は大変おすすめです</p>
       </div>
       <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">インターネットも快適で、自然の中でリモートワークしながらリフレッシュできました。また利用したいです。</p>
-        <span class="review-author">— ゲスト（ワーケーション）</span>
+        <div class="review-meta">
+          <span class="review-stars">★★★★★</span>
+          <span class="review-date">2025年7月</span>
+          <span class="review-attr">お子様連れ</span>
+        </div>
+        <p class="review-text">隅々まで心遣いを感じられる素晴らしいお宿でした。オーナーさんも親切でわざわざトースターを購入してくださいました。どこもかしこもキレイにされてます。3家族、大人3人子供7人で夏休みに利用させて頂きました。
+遊び道具もたくさん用意されており子供たちも大満足です。乾燥機もついていたので川遊び後に水着を洗って乾燥まですることができました。地元の方たちも親切でした。大満足です。ありがとうございました。</p>
       </div>
       <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">アメニティが充実していて、手ぶらで来ても安心でした。また季節を変えて訪れたいです。</p>
-        <span class="review-author">— ゲスト（カップル旅行）</span>
+        <div class="review-meta">
+          <span class="review-stars">★★★★★</span>
+          <span class="review-date">2025年7月</span>
+          <span class="review-attr">お子様連れ</span>
+        </div>
+        <p class="review-text">家族が3世代4世帯(乳幼児2人👶)になり、みんなで泊まれる旅行として、7月の連休に初めてAirbnbを1泊利用しました！
+
+ホストの方が大変親切で、宿泊前から丁寧に連絡をくださり、質問に答えていただけて安心して当日を迎えられました😊
+
+古民家の外観は思ったより古めで最初は驚きましたが、室内は綺麗で冷房完備、水回りはお風呂や洗面台など大変新しく広くて、快適に過ごせます！広間が多く広々として子どもが走り回っていましたが、引き戸で区切れるので、夜寝る時は家族ごとのスペースを確保できるのも助かりました✨
+カードゲームや知恵の輪など遊びが揃っていて、子どもも大人も皆で楽しめました✨Wi-Fiもあり、退屈しないです！
+
+総合して、うちの家族にはみんな大好評だったので、また家族が集まれる機会があればリピートしたいねと話してました😊ホストさん、今回はお世話になりました！ありがとうございました☺️</p>
       </div>
       <!-- ループ用複製 -->
       <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">古民家の雰囲気が最高でした。梁や土間など、普段では体験できない空間で家族全員大満足。また必ず来ます！</p>
-        <span class="review-author">— ゲスト（家族旅行）</span>
+        <div class="review-meta">
+          <span class="review-stars">★★★★★</span>
+          <span class="review-date">2025年10月</span>
+          <span class="review-attr">お子様連れ</span>
+        </div>
+        <p class="review-text">この度はありがとうございました。
+予約してから当日まで、オーナーさんがとても親切に丁寧に対応してくださり安心して当日をむかえることができました！
+大人数で利用させていただきましたが、食器類や水回りの設備が充実していて快適に過ごせました(^^)また当日はあいにくの天気でしたが、人生ゲームやピコピコハンマーなど種類豊富な玩具やボードゲームのおかげで子ども達は飽きることなく楽しんでいました😆
+散策ツアーでは、担当の方がコースや時間について調整してくださり、小さい子どもがいても安心して楽しむことができました！洞窟へも案内していただき、子どもも大人も大盛り上がりでした🤗✨</p>
       </div>
       <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">一棟貸しなので気兼ねなくくつろげました。アナログゲームが豊富で、子どもたちが夢中になっていました。</p>
-        <span class="review-author">— ゲスト（子連れ旅行）</span>
+        <div class="review-meta">
+          <span class="review-stars">★★★★★</span>
+          <span class="review-date">2025年8月</span>
+          <span class="review-attr">お子様連れ</span>
+        </div>
+        <p class="review-text">友人家族3世帯で宿泊させていただきました。
+となりのトトロに出てくるような雰囲気のお部屋とリノベーションされてとても綺麗な水回りで、とても快適に楽しく過ごすことができました。
+特にホストの皆様からの心遣いでご準備いただいたアメニティ、子供たちへのお菓子に友人共々、感動しました。</p>
       </div>
       <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">里山の静けさと満天の星空に感動。洞窟探検ツアーも最高で、一生の思い出になりました。</p>
-        <span class="review-author">— ゲスト（友人グループ）</span>
+        <div class="review-meta">
+          <span class="review-stars">★★★★★</span>
+          <span class="review-attr">ご家族・大人数におすすめ</span>
+        </div>
+        <p class="review-text">楽しみました😊
+
+コミュニケーションもとても優しくてオーナーさんの愛を感じる素敵な宿です。
+ご家族や大人数での利用は大変おすすめです</p>
       </div>
       <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">インターネットも快適で、自然の中でリモートワークしながらリフレッシュできました。また利用したいです。</p>
-        <span class="review-author">— ゲスト（ワーケーション）</span>
+        <div class="review-meta">
+          <span class="review-stars">★★★★★</span>
+          <span class="review-date">2025年7月</span>
+          <span class="review-attr">お子様連れ</span>
+        </div>
+        <p class="review-text">隅々まで心遣いを感じられる素晴らしいお宿でした。オーナーさんも親切でわざわざトースターを購入してくださいました。3家族、大人3人子供7人で夏休みに利用させて頂きました。
+遊び道具もたくさん用意されており子供たちも大満足です。乾燥機もついていたので川遊び後に水着を洗って乾燥まですることができました。大満足です。ありがとうございました。</p>
       </div>
       <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">アメニティが充実していて、手ぶらで来ても安心でした。また季節を変えて訪れたいです。</p>
-        <span class="review-author">— ゲスト（カップル旅行）</span>
+        <div class="review-meta">
+          <span class="review-stars">★★★★★</span>
+          <span class="review-date">2025年7月</span>
+          <span class="review-attr">お子様連れ</span>
+        </div>
+        <p class="review-text">家族が3世代4世帯(乳幼児2人👶)になり、みんなで泊まれる旅行として、7月の連休に初めて1泊利用しました！
+ホストの方が大変親切で、宿泊前から丁寧に連絡をくださり安心して当日を迎えられました😊
+室内は綺麗で冷房完備、水回りは大変新しく広くて快適です！カードゲームや知恵の輪など遊びが揃っていて、子どもも大人も皆で楽しめました✨また家族が集まれる機会があればリピートしたいねと話してました😊</p>
       </div>
     </div>
   </div>
