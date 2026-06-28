@@ -481,6 +481,24 @@
       color: #5a4838;
     }
 
+    /* ===== VIDEO ===== */
+    .video-section { background: #0a0500; padding: 100px 20px; }
+    .video-section h2 { color: var(--gold); }
+    .video-section .section-label { color: var(--gold); }
+    .video-wrap {
+      margin-top: 40px;
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 8px 60px rgba(0,0,0,0.7);
+    }
+    .video-wrap video {
+      width: 100%;
+      display: block;
+      max-height: 75vh;
+      object-fit: cover;
+    }
+
     /* ===== REVIEWS ===== */
     .reviews { background: var(--brown); overflow: hidden; padding: 80px 0; }
     .reviews .section-inner { max-width: 900px; margin: 0 auto; padding: 0 20px; }
@@ -805,6 +823,20 @@
           <li>ヘアブラシ</li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section class="video-section" id="video">
+  <div class="section-inner">
+    <span class="section-label">MOVIE</span>
+    <h2>孫八の空気感</h2>
+    <div class="divider"></div>
+    <div class="video-wrap">
+      <video controls autoplay muted loop playsinline poster="top.jpg">
+        <source src="movie.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
 </section>
