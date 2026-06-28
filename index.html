@@ -37,6 +37,35 @@
       padding: 16px 40px;
     }
 
+    /* ===== TAB NAV ===== */
+    .tab-nav {
+      position: fixed;
+      top: 70px; left: 0; right: 0;
+      z-index: 99;
+      background: rgba(92, 61, 46, 0.95);
+      backdrop-filter: blur(6px);
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: none;
+      border-bottom: 1px solid rgba(200, 169, 110, 0.3);
+    }
+    .tab-nav::-webkit-scrollbar { display: none; }
+    .tab-nav a {
+      display: inline-block;
+      padding: 12px 20px;
+      color: #e8dcc8;
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      transition: color 0.2s, border-bottom 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+    .tab-nav a:hover,
+    .tab-nav a.active {
+      color: var(--gold);
+      border-bottom: 2px solid var(--gold);
+    }
+
     .logo {
       color: var(--gold);
       font-size: 1.4rem;
@@ -503,6 +532,18 @@
   </style>
 </head>
 <body>
+
+<!-- TAB NAV -->
+<nav class="tab-nav">
+  <a href="#about">孫八について</a>
+  <a href="#charm">孫八の魅力</a>
+  <a href="#play">過ごし方・遊び方</a>
+  <a href="#amenities">設備・アメニティ</a>
+  <a href="#reviews">お客様の声</a>
+  <a href="#gallery">フォトギャラリー</a>
+  <a href="#access">アクセス・駐車場</a>
+  <a href="#booking">ご予約・お問い合わせ</a>
+</nav>
 
 <!-- HEADER -->
 <header>
