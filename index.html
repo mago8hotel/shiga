@@ -253,30 +253,56 @@
     }
 
     .feature-card {
-      text-align: center;
-      padding: 40px 24px;
-      border: 1px solid #e0d8cc;
-      background: white;
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      border-radius: 2px;
+    }
+
+    .feature-card .card-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.6s ease;
+    }
+
+    .feature-card:hover .card-bg {
+      transform: scale(1.04);
+    }
+
+    .feature-card .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,5,0,0.82) 0%, rgba(10,5,0,0.2) 55%, rgba(10,5,0,0.1) 100%);
+    }
+
+    .feature-card .card-body {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 32px 28px;
+      text-align: left;
     }
 
     .feature-icon {
-      font-size: 2.5rem;
-      margin-bottom: 16px;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
       display: block;
     }
 
     .feature-card h3 {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: normal;
       letter-spacing: 0.1em;
-      color: var(--brown);
-      margin-bottom: 12px;
+      color: var(--gold);
+      margin-bottom: 8px;
     }
 
     .feature-card p {
-      font-size: 0.9rem;
-      color: #6b5040;
+      font-size: 0.88rem;
+      color: #e8dcc8;
       margin: 0;
+      line-height: 1.7;
     }
 
     /* ===== EXPERIENCE ===== */
@@ -594,22 +620,28 @@
     <h2>孫八の魅力</h2>
     <div class="divider"></div>
     <div class="features-grid">
-      <div class="feature-card" style="background: url('120.jpg') center/cover no-repeat; position: relative; overflow: hidden;">
-        <div style="position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 40px 24px;">
+      <div class="feature-card">
+        <div class="card-bg" style="background-image: url('120.jpg');"></div>
+        <div class="card-overlay"></div>
+        <div class="card-body">
           <span class="feature-icon">🏯</span>
           <h3>何もないから、会話が生まれる</h3>
           <p>テレビのない築120年の古民家。梁や土間が紡ぐ空間で、家族や仲間と向き合う時間を。</p>
         </div>
       </div>
-      <div class="feature-card" style="background: url('private.jpg') center/cover no-repeat; position: relative; overflow: hidden;">
-        <div style="position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 40px 24px;">
+      <div class="feature-card">
+        <div class="card-bg" style="background-image: url('private.jpg');"></div>
+        <div class="card-overlay"></div>
+        <div class="card-body">
           <span class="feature-icon">🌟</span>
           <h3>一棟貸切だから、気を使わない</h3>
           <p>最大15名まで。子ども連れでも、大人数でも、ここでは全員が主役です。</p>
         </div>
       </div>
-      <div class="feature-card" style="background: url('shizen.jpg') center/cover no-repeat; position: relative; overflow: hidden;">
-        <div style="position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 40px 24px;">
+      <div class="feature-card">
+        <div class="card-bg" style="background-image: url('shizen.jpg');"></div>
+        <div class="card-overlay"></div>
+        <div class="card-body">
           <span class="feature-icon">🌿</span>
           <h3>夜は星、昼は川、家の中ではゲーム</h3>
           <p>満天の星空、清流のせせらぎ、蛍の光。里山の四季が、五感をまるごと満たします。</p>
