@@ -490,6 +490,35 @@
       aspect-ratio: 4/3;
     }
 
+    /* ===== INTRO ===== */
+    #intro {
+      position: fixed;
+      inset: 0;
+      background: #0a0500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    #intro img {
+      width: clamp(200px, 45vw, 560px);
+      mix-blend-mode: screen;
+      filter: invert(1);
+      opacity: 0;
+      animation: introLogo 3.6s ease forwards;
+    }
+
+    @keyframes introLogo {
+      0%   { opacity: 0; transform: scale(0.85); }
+      30%  { opacity: 1; transform: scale(1); }
+      70%  { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(1.06); }
+    }
+
+    #intro.done { display: none; }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       header { padding: 14px 20px; }
@@ -503,6 +532,11 @@
   </style>
 </head>
 <body>
+
+<!-- INTRO -->
+<div id="intro">
+  <img src="moji.jpg" alt="孫八">
+</div>
 
 <!-- HEADER -->
 <header>
@@ -873,5 +907,10 @@
   <p style="margin-top: 16px;">© 2024 古民家宿 孫八. All rights reserved.</p>
 </footer>
 
+<script>
+  setTimeout(function() {
+    document.getElementById('intro').classList.add('done');
+  }, 3800);
+</script>
 </body>
 </html>
