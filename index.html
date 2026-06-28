@@ -382,6 +382,41 @@
       color: #5a4838;
     }
 
+    /* ===== GALLERY ===== */
+    .gallery { background: var(--warm-white); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 12px;
+    }
+
+    .gallery-grid .main-photo {
+      grid-column: 1 / 3;
+      grid-row: 1 / 3;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 2px;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-grid img:hover { opacity: 0.88; }
+
+    .gallery-grid .main-photo img {
+      aspect-ratio: 4/3;
+      height: 100%;
+    }
+
+    .gallery-grid .sub-photo img {
+      aspect-ratio: 4/3;
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       header { padding: 14px 20px; }
@@ -431,6 +466,32 @@
         <p>築120年の古民家を一棟貸切で楽しむ宿「孫八」。最大15名まで宿泊でき、里山の静けさと満天の星空、清流のせせらぎに包まれる完全プライベート空間です。</p>
         <p>テレビのないゆったりとした時間の中で、アナログゲームや家族との会話を思う存分お楽しみいただけます。</p>
         <p>都会の喧騒を離れ、心がほどけるようなひとときを。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="section-inner">
+    <span class="section-label">GALLERY</span>
+    <h2>フォトギャラリー</h2>
+    <div class="divider"></div>
+    <div class="gallery-grid">
+      <div class="main-photo">
+        <img src="LINE_ALBUM_202504孫八_260614_16.jpg" alt="孫八 外観">
+      </div>
+      <div class="sub-photo">
+        <img src="LINE_ALBUM_202504孫八_260614_22.jpg" alt="孫八 室内">
+      </div>
+      <div class="sub-photo">
+        <img src="LINE_ALBUM_202504孫八_260614_23.jpg" alt="孫八 里山">
+      </div>
+      <div class="sub-photo" style="grid-column: 1 / 2;">
+        <img src="LINE_ALBUM_202504孫八_260614_99.jpg" alt="孫八 周辺">
+      </div>
+      <div class="sub-photo" style="grid-column: 2 / 4;">
+        <img src="LINE_ALBUM_202508孫八🍉_260614_90.jpg" alt="孫八 夏の風景">
       </div>
     </div>
   </div>
