@@ -444,7 +444,8 @@
     .amenity-group-header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
+      gap: 12px;
       border-bottom: 1px solid var(--gold);
       padding-bottom: 10px;
       margin-bottom: 16px;
@@ -942,11 +943,16 @@
     <div class="amenity-groups">
       <div class="amenity-group full-width">
         <div class="amenity-group-header">
-          <h3>設備</h3>
+          <h3>間取り</h3>
           <button class="exp-detail-btn" onclick="toggleDetail(this)">photo ▼</button>
         </div>
         <div class="exp-detail-panel">
           <img src="madori.jpg" alt="間取り" data-lb>
+        </div>
+      </div>
+      <div class="amenity-group">
+        <div class="amenity-group-header">
+          <h3>設備</h3>
         </div>
         <div class="amenity-info">
           <p>最大15名まで宿泊可能（柔軟に対応いたします。詳しくはお問い合わせください）</p>
@@ -967,6 +973,18 @@
       </div>
       <div class="amenity-group">
         <div class="amenity-group-header">
+          <h3>アメニティ</h3>
+        </div>
+        <ul>
+          <li>歯ブラシ（子供用有り）</li>
+          <li>カミソリ</li>
+          <li>シェービングジェル</li>
+          <li>ヘアブラシ</li>
+          <li>寝巻きはございません</li>
+        </ul>
+      </div>
+      <div class="amenity-group">
+        <div class="amenity-group-header">
           <h3>洗面・風呂</h3>
           <button class="exp-detail-btn" onclick="toggleDetail(this)">photo ▼</button>
         </div>
@@ -981,18 +999,6 @@
           <li>バスタオル</li>
           <li>フェイスタオル</li>
           <li>ボディータオル</li>
-        </ul>
-      </div>
-      <div class="amenity-group">
-        <div class="amenity-group-header">
-          <h3>アメニティ</h3>
-        </div>
-        <ul>
-          <li>歯ブラシ（子供用有り）</li>
-          <li>カミソリ</li>
-          <li>シェービングジェル</li>
-          <li>ヘアブラシ</li>
-          <li>寝巻きはございません</li>
         </ul>
       </div>
       <div class="amenity-group">
@@ -1019,8 +1025,7 @@
           <h3>孫八商店</h3>
         </div>
         <ul>
-          <li>地元の特産品・お土産を販売</li>
-          <li>チェックアウト後もお立ち寄りいただけます</li>
+          <li>お菓子や、お酒を販売しています</li>
         </ul>
       </div>
     </div>
