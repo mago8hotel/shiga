@@ -439,14 +439,27 @@
     }
     .amenity-info p:last-child { margin: 0; }
 
+    .amenity-group-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 10px;
+      margin-bottom: 16px;
+    }
     .amenity-group h3 {
       font-size: 1rem;
       font-weight: normal;
       letter-spacing: 0.12em;
       color: var(--brown);
-      border-bottom: 1px solid var(--gold);
-      padding-bottom: 10px;
-      margin-bottom: 16px;
+      margin: 0;
+      border: none;
+      padding: 0;
+    }
+    .amenity-group-header .exp-detail-btn {
+      margin: 0;
+      font-size: 0.72rem;
+      padding: 3px 10px;
     }
 
     .amenity-group ul {
@@ -926,7 +939,13 @@
     <div class="divider"></div>
     <div class="amenity-groups">
       <div class="amenity-group full-width">
-        <h3>設備</h3>
+        <div class="amenity-group-header">
+          <h3>設備</h3>
+          <button class="exp-detail-btn" onclick="toggleDetail(this)">photo ▼</button>
+        </div>
+        <div class="exp-detail-panel">
+          <img src="madori.jpg" alt="間取り" data-lb>
+        </div>
         <div class="amenity-info">
           <p>最大15名まで宿泊可能（柔軟に対応いたします。詳しくはお問い合わせください）</p>
           <p>LDK：広々としたリビング・ダイニング・キッチンが一体となった開放的な空間</p>
@@ -943,13 +962,16 @@
           <li>無料駐車場（5台）</li>
           <li>布団15組</li>
         </ul>
-        <button class="exp-detail-btn" onclick="toggleDetail(this)">photo ▼</button>
-        <div class="exp-detail-panel">
-          <img src="madori.jpg" alt="間取り" data-lb>
-        </div>
       </div>
       <div class="amenity-group">
-        <h3>風呂・洗面</h3>
+        <div class="amenity-group-header">
+          <h3>洗面・風呂</h3>
+          <button class="exp-detail-btn" onclick="toggleDetail(this)">photo ▼</button>
+        </div>
+        <div class="exp-detail-panel">
+          <img src="huro.jpg" alt="風呂" data-lb style="margin-bottom: 8px;">
+          <img src="sen.jpg" alt="洗面" data-lb>
+        </div>
         <ul>
           <li>シャンプー（TSUBAKI）</li>
           <li>コンディショナー（TSUBAKI）</li>
@@ -958,14 +980,11 @@
           <li>フェイスタオル</li>
           <li>ボディータオル</li>
         </ul>
-        <button class="exp-detail-btn" onclick="toggleDetail(this)">photo ▼</button>
-        <div class="exp-detail-panel">
-          <img src="huro.jpg" alt="風呂" data-lb style="margin-bottom: 8px;">
-          <img src="sen.jpg" alt="洗面" data-lb>
-        </div>
       </div>
       <div class="amenity-group">
-        <h3>アメニティ</h3>
+        <div class="amenity-group-header">
+          <h3>アメニティ</h3>
+        </div>
         <ul>
           <li>歯ブラシ（子供用有り）</li>
           <li>カミソリ</li>
@@ -975,7 +994,14 @@
         </ul>
       </div>
       <div class="amenity-group">
-        <h3>キッチン・調理器具</h3>
+        <div class="amenity-group-header">
+          <h3>キッチン・調理器具</h3>
+          <button class="exp-detail-btn" onclick="toggleDetail(this)">photo ▼</button>
+        </div>
+        <div class="exp-detail-panel">
+          <img src="ki.jpg" alt="キッチン" data-lb style="margin-bottom: 8px;">
+          <img src="ryori.JPG" alt="調理器具" data-lb>
+        </div>
         <ul>
           <li>IHコンロ・カセットコンロ</li>
           <li>鍋・フライパン各種</li>
@@ -985,14 +1011,11 @@
           <li>ケトル・トースター</li>
           <li>調味料（塩・胡椒・醤油・油）</li>
         </ul>
-        <button class="exp-detail-btn" onclick="toggleDetail(this)">photo ▼</button>
-        <div class="exp-detail-panel">
-          <img src="ki.jpg" alt="キッチン" data-lb style="margin-bottom: 8px;">
-          <img src="ryori.JPG" alt="調理器具" data-lb>
-        </div>
       </div>
       <div class="amenity-group">
-        <h3>孫八商店</h3>
+        <div class="amenity-group-header">
+          <h3>孫八商店</h3>
+        </div>
         <ul>
           <li>地元の特産品・お土産を販売</li>
           <li>チェックアウト後もお立ち寄りいただけます</li>
