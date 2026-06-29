@@ -903,10 +903,7 @@
         </ul>
       </div>
       <div class="amenity-group">
-        <h3 style="display:flex; align-items:center; gap:12px;">
-          <img src="huro.jpg" alt="風呂" data-lb style="width:48px; height:48px; object-fit:cover; border-radius:3px; flex-shrink:0; cursor:pointer; transition:opacity 0.2s; display:inline-block;">
-          風呂
-        </h3>
+        <h3>風呂</h3>
         <ul>
           <li>シャンプー（TSUBAKI）</li>
           <li>コンディショナー（TSUBAKI）</li>
@@ -915,12 +912,17 @@
           <li>フェイスタオル</li>
           <li>ボディータオル</li>
         </ul>
+        <button class="exp-detail-btn" onclick="toggleDetail(this)">画像を見る ▼</button>
+        <div class="exp-detail-panel">
+          <img src="huro.jpg" alt="風呂" data-lb>
+        </div>
       </div>
       <div class="amenity-group">
-        <h3 style="display:flex; align-items:center; gap:12px;">
-          <img src="sen.jpg" alt="洗面" data-lb style="width:48px; height:48px; object-fit:cover; border-radius:3px; flex-shrink:0; cursor:pointer; transition:opacity 0.2s; display:inline-block;">
-          洗面
-        </h3>
+        <h3>洗面</h3>
+        <button class="exp-detail-btn" onclick="toggleDetail(this)">画像を見る ▼</button>
+        <div class="exp-detail-panel">
+          <img src="sen.jpg" alt="洗面" data-lb>
+        </div>
       </div>
       <div class="amenity-group">
         <h3>アメニティ</h3>
