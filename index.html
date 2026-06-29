@@ -422,6 +422,22 @@
       grid-template-columns: 1fr 1fr 1fr;
       gap: 40px;
     }
+    .amenity-group.full-width {
+      grid-column: 1 / -1;
+    }
+    .amenity-info {
+      margin-bottom: 16px;
+      padding: 16px 20px;
+      background: rgba(200,169,110,0.08);
+      border-left: 3px solid var(--gold);
+    }
+    .amenity-info p {
+      margin: 0 0 6px;
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .amenity-info p:last-child { margin: 0; }
 
     .amenity-group h3 {
       font-size: 1rem;
@@ -888,11 +904,13 @@
     <h2>設備・アメニティ</h2>
     <div class="divider"></div>
     <div class="amenity-groups">
-      <div class="amenity-group">
+      <div class="amenity-group full-width">
         <h3>設備</h3>
+        <div class="amenity-info">
+          <p>最大15名まで宿泊可能（柔軟に対応いたします。詳しくはお問い合わせください）</p>
+          <p>LDK：広々としたリビング・ダイニング・キッチンが一体となった開放的な空間</p>
+        </div>
         <ul>
-          <li>最大15名まで宿泊可能（柔軟に対応いたします。詳しくはお問い合わせください）</li>
-          <li>LDK：広々としたリビング・ダイニング・キッチンが一体となった開放的な空間</li>
           <li>インターネット完備</li>
           <li>ドライヤー（Dyson）</li>
           <li>置きドライヤー（PAUZ）</li>
