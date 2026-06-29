@@ -85,7 +85,6 @@
 
     nav a:hover { color: var(--gold); }
     nav a:visited { color: #e8dcc8; }
-    a[href="#experience"]:visited { color: var(--gold); }
 
     /* ===== HERO ===== */
     @keyframes heroZoom {
@@ -934,6 +933,20 @@
           <li>ヘアブラシ</li>
           <li>寝巻きはございません</li>
         </ul>
+      </div>
+      <div class="amenity-group">
+        <h3>キッチン</h3>
+        <button class="exp-detail-btn" onclick="toggleDetail(this)">画像を見る ▼</button>
+        <div class="exp-detail-panel">
+          <img src="ki.jpg" alt="キッチン" data-lb>
+        </div>
+      </div>
+      <div class="amenity-group">
+        <h3>間取り</h3>
+        <button class="exp-detail-btn" onclick="toggleDetail(this)">画像を見る ▼</button>
+        <div class="exp-detail-panel">
+          <img src="madori.jpg" alt="間取り" data-lb>
+        </div>
       </div>
       <div class="amenity-group">
         <h3>調理器具</h3>
