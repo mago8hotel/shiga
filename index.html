@@ -1275,9 +1275,12 @@
 <script>
   const lb = document.getElementById('lightbox');
   function toggleDetail(btn) {
-    const panel = btn.nextElementSibling || btn.closest('.amenity-group-header').nextElementSibling;
+    const header = btn.closest('.amenity-group-header');
+    const panel = header ? header.nextElementSibling : btn.nextElementSibling;
     const isOpen = panel.classList.toggle('open');
-    btn.textContent = isOpen ? '閉じる ▲' : 'photo ▼';
+    const originalText = btn.dataset.orig || btn.textContent;
+    if (!btn.dataset.orig) btn.dataset.orig = btn.textContent;
+    btn.textContent = isOpen ? '閉じる ▲' : originalText;
   }
 
   const lbImg = document.getElementById('lightbox-img');
