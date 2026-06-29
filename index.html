@@ -952,7 +952,7 @@
           <li>５LDK</li>
           <li>最大15名まで宿泊可能（柔軟に対応いたします。詳しくはお問い合わせください）</li>
           <li>インターネット完備</li>
-          <li style="display:flex; align-items:center; gap:10px;">トイレ２個 <button class="exp-detail-btn" onclick="toggleDetail(this)" style="margin:0;">photo ▼</button></li>
+          <li style="display:flex; align-items:center; gap:10px;">トイレ二箇所 <button class="exp-detail-btn" onclick="toggleDetail(this)" style="margin:0;">photo ▼</button></li>
         </ul>
         <div class="exp-detail-panel">
           <img src="toi1.jpg" alt="トイレ1" data-lb style="margin-bottom: 8px;">
@@ -1270,7 +1270,10 @@
   const lb = document.getElementById('lightbox');
   function toggleDetail(btn) {
     const header = btn.closest('.amenity-group-header');
-    const panel = header ? header.nextElementSibling : btn.nextElementSibling;
+    const inLi = btn.closest('li');
+    const panel = header ? header.nextElementSibling
+                 : inLi ? btn.closest('ul').nextElementSibling
+                 : btn.nextElementSibling;
     const isOpen = panel.classList.toggle('open');
     const originalText = btn.dataset.orig || btn.textContent;
     if (!btn.dataset.orig) btn.dataset.orig = btn.textContent;
