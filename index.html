@@ -667,6 +667,24 @@
         align-items: flex-start;
         gap: 0;
       }
+      .nav-wrap {
+        position: relative;
+        width: 100%;
+      }
+      .nav-scroll-hint {
+        position: absolute;
+        right: 0; top: 0; bottom: 0;
+        width: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(to right, transparent, rgba(28,14,7,0.92) 60%);
+        color: var(--gold);
+        font-size: 1.3rem;
+        pointer-events: none;
+        transition: opacity 0.3s;
+      }
+      .nav-scroll-hint.hidden { opacity: 0; }
       nav {
         width: 100%;
         overflow-x: auto;
@@ -696,7 +714,8 @@
 <!-- HEADER -->
 <header>
   <a class="logo" href="#"><img src="moji.jpg" alt="孫八" style="height: 38px; mix-blend-mode: screen; filter: invert(1);"></a>
-  <nav>
+  <div class="nav-wrap">
+  <nav id="main-nav">
     <a href="#about">孫八について</a>
     <a href="#charm">魅力</a>
     <a href="#experience">体験</a>
@@ -706,6 +725,8 @@
     <a href="#access">アクセス</a>
     <a href="#booking">予約・SNS</a>
   </nav>
+  <div class="nav-scroll-hint" id="nav-scroll-hint">›</div>
+  </div>
 </header>
 
 <!-- HERO -->
@@ -1242,6 +1263,16 @@
   });
   document.getElementById('lightbox-close').addEventListener('click', () => lb.classList.remove('open'));
   lb.addEventListener('click', e => { if (e.target === lb) lb.classList.remove('open'); });
+  const nav = document.getElementById('main-nav');
+  const hint = document.getElementById('nav-scroll-hint');
+  if (nav && hint) {
+    const updateHint = () => {
+      const atEnd = nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 4;
+      hint.classList.toggle('hidden', atEnd);
+    };
+    nav.addEventListener('scroll', updateHint);
+    updateHint();
+  }
 </script>
 </body>
 </html>
