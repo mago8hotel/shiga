@@ -359,6 +359,36 @@
       object-fit: contain;
       border-radius: 4px;
     }
+    .exp-detail-btn {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.78rem;
+      color: var(--gold);
+      background: none;
+      border: 1px solid rgba(200,169,110,0.4);
+      padding: 4px 12px;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .exp-detail-btn:hover { background: rgba(200,169,110,0.1); }
+    .exp-detail-panel {
+      display: none;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(200,169,110,0.2);
+    }
+    .exp-detail-panel.open { display: block; }
+    .exp-detail-panel img {
+      width: 100%;
+      max-height: 240px;
+      object-fit: cover;
+      border-radius: 4px;
+      cursor: pointer;
+      display: block;
+    }
+
     #lightbox-close {
       position: fixed;
       top: 20px;
@@ -759,13 +789,14 @@
         </div>
       </div>
       <div class="exp-item">
-        <div style="display:flex; flex-direction:column; gap:6px; flex-shrink:0;">
-          <img src="raku.jpg" alt="落書き体験" data-lb style="width:72px; height:72px; object-fit:cover; border-radius:4px; cursor:pointer; display:block; transition:opacity 0.2s;">
-          <img src="oekaki.jpg" alt="落書き体験2" data-lb style="width:72px; height:72px; object-fit:cover; border-radius:4px; cursor:pointer; display:block; transition:opacity 0.2s;">
-        </div>
+        <img src="raku.jpg" alt="落書き体験" data-lb>
         <div class="exp-body">
           <h3>落書き体験</h3>
           <p>チョークで屋外に自由に描こう。子どもも大人も夢中になれる開放的な体験。</p>
+          <button class="exp-detail-btn" onclick="toggleDetail(this)">詳細を見る ▼</button>
+          <div class="exp-detail-panel">
+            <img src="oekaki.jpg" alt="落書き体験 詳細" data-lb>
+          </div>
         </div>
       </div>
       <div class="exp-item">
@@ -1125,6 +1156,12 @@
 
 <script>
   const lb = document.getElementById('lightbox');
+  function toggleDetail(btn) {
+    const panel = btn.nextElementSibling;
+    const isOpen = panel.classList.toggle('open');
+    btn.textContent = isOpen ? '閉じる ▲' : '詳細を見る ▼';
+  }
+
   const lbImg = document.getElementById('lightbox-img');
   document.querySelectorAll('img[data-lb]').forEach(img => {
     img.addEventListener('click', () => {
