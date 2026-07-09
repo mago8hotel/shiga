@@ -962,7 +962,15 @@
         <div style="width:72px; height:72px; background:rgba(200,169,110,0.15); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:2rem;">🗝️</div>
         <div class="exp-body">
           <h3>孫八の秘密</h3>
-          <p>築120年の古民家には、まだ見ぬ秘密が隠されています。宝探しで謎を解き明かし、孫八の歴史に触れてみてください。</p>
+          <p>築120年の古民家には、まだ見ぬ秘密が隠されています。</p>
+          <button class="exp-detail-btn" onclick="toggleDetail(this)">宝さがし ▼</button>
+          <div class="exp-detail-panel"><p>古民家のどこかに宝が隠されています。ヒントを見つけて謎を解き明かしてみてください。</p></div>
+          <button class="exp-detail-btn" onclick="toggleDetail(this)" style="margin-top:6px;">クラファン ▼</button>
+          <div class="exp-detail-panel"><p>孫八はクラウドファンディングで生まれました。支援してくださった皆さんへの感謝の気持ちが込められています。</p></div>
+          <button class="exp-detail-btn" onclick="toggleDetail(this)" style="margin-top:6px;">襖 ▼</button>
+          <div class="exp-detail-panel"><p>古民家に残る味わい深い襖。その模様や歴史に、孫八ならではのストーリーが宿っています。</p></div>
+          <button class="exp-detail-btn" onclick="toggleDetail(this)" style="margin-top:6px;">孫八の看板 ▼</button>
+          <div class="exp-detail-panel"><p>入口に掲げられた孫八の看板。その由来と歴史を探してみてください。</p></div>
         </div>
       </div>
     </div>
@@ -1276,6 +1284,8 @@
           <li>チェックアウト：11時まで</li>
           <li>キーBOXにて無人チェックイン可能</li>
         </ul>
+        <p style="margin-top:14px; font-size:0.9rem; font-weight:bold; color:var(--brown);">■ アーリーチェックインについて</p>
+        <p style="font-size:0.88rem; margin-bottom:0;">アーリーチェックイン・レイトチェックアウトは承っておりませんが、前日・翌日の宿泊状況によって柔軟に対応いたします。詳しくはお問い合わせください。</p>
       </div>
       <div class="info-box">
         <h3>禁煙・ルール</h3>
