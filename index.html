@@ -87,6 +87,21 @@
     nav a:visited { color: #e8dcc8 !important; }
 
     /* ===== HERO ===== */
+    @keyframes yoyaku-blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+    .badge-yoyaku {
+      font-size: 0.75rem;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 1px 8px;
+      border-radius: 20px;
+      margin-left: 8px;
+      vertical-align: middle;
+      display: inline-block;
+      animation: yoyaku-blink 1.4s ease-in-out infinite;
+    }
     @keyframes heroZoom {
       0%   { transform: scale(1.08); }
       100% { transform: scale(1); }
@@ -821,7 +836,7 @@
       <div class="exp-item">
         <img src="dokutu.jpg" alt="洞窟探検・里山散策ツアー" data-lb>
         <div class="exp-body">
-          <h3>洞窟探検・里山散策ツアー <span style="font-size:0.75rem; color:var(--gold); border:1px solid var(--gold); padding:1px 8px; border-radius:20px; margin-left:8px; vertical-align:middle;">要予約</span></h3>
+          <h3>洞窟探検・里山散策ツアー <span class="badge-yoyaku">要予約</span></h3>
           <p>地元ガイドが案内する秘境の洞窟探検と、里山の自然や文化を感じる散策ツアー。非日常の冒険体験をどうぞ。</p>
           <button class="exp-detail-btn" onclick="toggleDetail(this)">詳細を見る ▼</button>
           <div class="exp-detail-panel">
@@ -832,7 +847,7 @@
       <div class="exp-item">
         <img src="taiken.jpg" alt="木工旋盤体験" data-lb>
         <div class="exp-body">
-          <h3>木工旋盤体験 <span style="font-size:0.75rem; color:var(--gold); border:1px solid var(--gold); padding:1px 8px; border-radius:20px; margin-left:8px; vertical-align:middle;">要予約</span></h3>
+          <h3>木工旋盤体験 <span class="badge-yoyaku">要予約</span></h3>
           <p>木工職人が直接指導。世界にひとつだけの木工作品を作ろう。</p>
           <button class="exp-detail-btn" onclick="toggleDetail(this)">詳細を見る ▼</button>
           <div class="exp-detail-panel">
@@ -908,7 +923,7 @@
       <div class="exp-item">
         <img src="gyara.jpg" alt="木工ギャラリー" data-lb>
         <div class="exp-body">
-          <h3>木工ギャラリー見学・購入 <span style="font-size:0.75rem; color:var(--gold); border:1px solid var(--gold); padding:1px 8px; border-radius:20px; margin-left:8px; vertical-align:middle;">要予約</span></h3>
+          <h3>木工ギャラリー見学・購入 <span class="badge-yoyaku">要予約</span></h3>
           <p>地元の木工職人による作品を展示・販売。手仕事の温もりが感じられる一点物の木工品をご覧いただけます。お気に入りの作品はその場でご購入も可能です。</p>
           <button class="exp-detail-btn" onclick="toggleDetail(this)">詳細を見る ▼</button>
           <div class="exp-detail-panel">
@@ -933,7 +948,7 @@
       <div class="exp-item">
         <img src="BBQ1.png" alt="バーベキュー体験" data-lb>
         <div class="exp-body">
-          <h3>バーベキュー体験 <span style="font-size:0.75rem; color:var(--gold); border:1px solid var(--gold); padding:1px 8px; border-radius:20px; margin-left:8px; vertical-align:middle;">要予約</span></h3>
+          <h3>バーベキュー体験 <span class="badge-yoyaku">要予約</span></h3>
           <p>イワタニのBBQグリルと専用グリルプレートを完備。食材はお持ち込みください。ご利用は8:00〜20:00、指定スペースのみ。詳細はお問い合わせください。</p>
           <button class="exp-detail-btn" onclick="toggleDetail(this)">詳細を見る ▼</button>
           <div class="exp-detail-panel">
