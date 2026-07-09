@@ -505,6 +505,7 @@
       content: '・';
       color: var(--gold);
     }
+    .amenity-group li.no-bullet::before { content: ''; }
 
     /* ===== GAMES ===== */
     .games-wrap {
@@ -1008,7 +1009,7 @@
           <li>５LDK</li>
           <li>最大15名まで宿泊可能（柔軟に対応いたします。詳しくはお問い合わせください）</li>
           <li>インターネット完備</li>
-          <li style="display:flex; align-items:center; gap:10px;">トイレ二箇所 <button class="exp-detail-btn" onclick="toggleDetail(this)" style="margin:0;">photo ▼</button></li>
+          <li>トイレ二箇所 <button class="exp-detail-btn" onclick="toggleDetail(this)" style="margin:0; display:inline-block; vertical-align:middle;">photo ▼</button></li>
         </ul>
         <div class="exp-detail-panel">
           <img src="toi1.jpg" alt="トイレ1" data-lb style="margin-bottom: 8px;">
@@ -1025,7 +1026,7 @@
           <li>カミソリ</li>
           <li>シェービングジェル</li>
           <li>ヘアブラシ</li>
-          <li>※寝巻きはございません</li>
+          <li class="no-bullet">※寝巻きはございません</li>
         </ul>
       </div>
       <div class="amenity-group">
@@ -1076,7 +1077,7 @@
         </div>
         <ul>
           <li>お菓子や、お酒を販売しています</li>
-          <li>有料（現金 or PayPay支払い）</li>
+          <li class="no-bullet">※有料（現金 or PayPay支払い）</li>
         </ul>
       </div>
     </div>
