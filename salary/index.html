@@ -112,7 +112,7 @@
     color: var(--muted);
     margin-top: 4px;
   }
-  select, input[type="text"], input[type="number"] {
+  select, input[type="text"], input[type="number"], input[type="date"] {
     width: 100%;
     font-family: inherit;
     font-size: 1.05rem;
@@ -167,6 +167,12 @@
     cursor: pointer;
   }
   .record-body { padding: 12px 14px; background: var(--surface); }
+  .record-breakdown {
+    background: var(--surface-2);
+    padding: 2px 14px;
+    border-top: 1px solid var(--line);
+  }
+  .record-breakdown .summary-row { padding: 5px 0; font-size: 0.88rem; }
   .record-total {
     display: flex;
     align-items: baseline;
@@ -180,6 +186,16 @@
     font-size: 1.2rem;
     font-variant-numeric: tabular-nums;
   }
+
+  .banner {
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .banner-warn { background: var(--warn-soft); color: var(--warn-ink); }
+  .banner-danger { background: var(--danger-soft); color: var(--danger); }
 
   .add-btn {
     width: 100%;
@@ -222,6 +238,17 @@
   }
   .summary-row:last-child { border-bottom: none; }
   .summary-row .v { font-variant-numeric: tabular-nums; color: var(--muted); }
+
+  .subtotal-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 6px 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+  .subtotal-row .v { font-variant-numeric: tabular-nums; }
+  .subtotal-wrap { border-top: 1px solid var(--line); margin-top: 6px; padding-top: 4px; }
 
   .grand {
     display: flex;
@@ -314,8 +341,11 @@
 
   <div class="card">
     <div class="field">
-      <label for="month">対象月</label>
-      <select id="month"></select>
+      <label>対象年月</label>
+      <div style="display:flex; gap:8px;">
+        <select id="year" style="flex:1;"></select>
+        <select id="month" style="flex:1;"></select>
+      </div>
     </div>
     <div class="field" style="margin-bottom:0;">
       <label for="name">お名前</label>
@@ -331,6 +361,10 @@
   <div class="card">
     <h2 class="section-title">内訳（今月の合計）</h2>
     <div id="breakdown"></div>
+    <div class="subtotal-wrap">
+      <div class="subtotal-row"><span>給与・手当</span><span class="v" id="wageTotal">0円</span></div>
+      <div class="subtotal-row"><span>立替経費精算</span><span class="v" id="expenseTotal">0円</span></div>
+    </div>
     <div class="grand">
       <span>合計金額</span>
       <span class="v" id="grandTotal">0円</span>
@@ -361,13 +395,15 @@
   for (var c = 0; c <= 10; c++) COUNT_OPTS.push(c);
   var SHEET_OPTS = [];
   for (var s = 0; s <= 20; s++) SHEET_OPTS.push(s);
-  var DAY_OPTS = [];
-  for (var d = 1; d <= 31; d++) DAY_OPTS.push(d);
 
   var STORE_KEY = "mago8_salary_v1";
+  // 稼働日に「年」の概念がなかった過去データは、明示的にこの年として移行する。
+  // 「今年」を基準に変換すると、翌年以降にアプリを開いたときに過去データの年がズレてしまうため固定値にする。
+  var LEGACY_YEAR = 2026;
 
   var FIELD_DEFS = [
-    { key: "date", label: "掃除をした日付（1〜31）", type: "select-day", hint: "掃除をしていない日はそのまま" },
+    { key: "date", label: "稼働日", type: "date" },
+    { key: "cleaned", label: "清掃をしましたか？", type: "select-yn" },
     { key: "gomi", label: "ゴミ回収をしましたか？", type: "select-umu" },
     { key: "sheets", label: "シーツは何組洗濯しましたか？", type: "select-sheet" },
     { key: "laundry", label: "ランドリー代金はいくらでしたか？（円）", type: "number" },
@@ -379,26 +415,30 @@
     { key: "otherItems", label: "その他", type: "other-items" }
   ];
 
+  // group: "wage" = 給与・手当 / "expense" = 立替経費精算
   var CATEGORY_DEFS = [
-    { key: "kiso", label: "基本清掃" },
-    { key: "gomi", label: "ゴミ回収" },
-    { key: "sheets", label: "シーツ" },
-    { key: "laundry", label: "ランドリー" },
-    { key: "over", label: "清掃延長（接客なし）" },
-    { key: "dayServ", label: "接客延長【昼】" },
-    { key: "nightServ", label: "接客延長【夜】" },
-    { key: "restock", label: "商品補充" },
-    { key: "lost", label: "忘れ物送付" },
-    { key: "other", label: "その他" }
+    { key: "kiso", label: "基本清掃", group: "wage" },
+    { key: "gomi", label: "ゴミ回収", group: "wage" },
+    { key: "sheets", label: "シーツ", group: "wage" },
+    { key: "laundry", label: "ランドリー", group: "expense" },
+    { key: "over", label: "清掃延長（接客なし）", group: "wage" },
+    { key: "dayServ", label: "接客延長【昼】", group: "wage" },
+    { key: "nightServ", label: "接客延長【夜】", group: "wage" },
+    { key: "restockExpense", label: "立替経費精算", group: "expense" },
+    { key: "restockAllowance", label: "商品補充手当", group: "wage" },
+    { key: "lost", label: "忘れ物送付", group: "wage" },
+    { key: "other", label: "その他", group: "wage" }
   ];
 
   function blankRecord() {
     return {
-      date: "", gomi: "", sheets: "", laundry: "", overMin: "",
+      date: "", cleaned: "", gomi: "", sheets: "", laundry: "", overMin: "",
       dayMin: "", nightMin: "", restockItems: [{ name: "", amount: "" }], lost: "",
       otherItems: [{ name: "", amount: "" }]
     };
   }
+
+  function pad2(n) { return (n < 10 ? "0" : "") + n; }
 
   function migrateItemPairs(items, legacyAmount) {
     if (!items || !items.length) {
@@ -420,7 +460,11 @@
       if (raw) {
         var parsed = JSON.parse(raw);
         if (parsed && Array.isArray(parsed.records)) {
-          // 過去バージョンで保存されたデータを新しい形式（名前＋金額のペア）に補完・移行する
+          var legacyMonth = parsed.month || (new Date().getMonth() + 1);
+          if (!parsed.year) {
+            // 年の概念がなかった過去データは、明示的にLEGACY_YEARのデータとして移行する
+            parsed.year = LEGACY_YEAR;
+          }
           for (var i = 0; i < parsed.records.length; i++) {
             var rec = parsed.records[i];
             rec.restockItems = migrateItemPairs(rec.restockItems, rec.restock);
@@ -431,12 +475,22 @@
             }
             delete rec.otherText;
             delete rec.otherAmt;
+
+            // 清掃有無：古い形式には無いので、日付が入っていれば「清掃した」だった仕様をそのまま引き継ぐ
+            if (rec.cleaned === undefined || rec.cleaned === null) {
+              rec.cleaned = rec.date ? "はい" : "";
+            }
+            // 稼働日：日にちだけの古い形式（例:"15"）を YYYY-MM-DD 形式に移行する
+            if (rec.date && /^\d{1,2}$/.test(String(rec.date))) {
+              rec.date = parsed.year + "-" + pad2(legacyMonth) + "-" + pad2(parseInt(rec.date, 10));
+            }
           }
           return parsed;
         }
       }
     } catch (e) {}
-    return { month: 8, name: "", nameOther: "", records: [blankRecord()] };
+    var now = new Date();
+    return { month: now.getMonth() + 1, year: now.getFullYear(), name: "", nameOther: "", records: [blankRecord()] };
   }
 
   var state = loadState();
@@ -452,7 +506,15 @@
       .replace(/．/g, ".");
   }
 
+  // 計算用：マイナス値は0として扱う
   function num(v) {
+    var n = parseFloat(toHalfWidth(v));
+    if (isNaN(n)) return 0;
+    return n < 0 ? 0 : n;
+  }
+
+  // 警告判定用：マイナスかどうかを見るため、クランプ前の値を返す
+  function rawNum(v) {
     var n = parseFloat(toHalfWidth(v));
     return isNaN(n) ? 0 : n;
   }
@@ -465,8 +527,27 @@
     return false;
   }
 
-  function calcRecord(r, month) {
-    var kiso = r.date ? (isSpecialDate(month, num(r.date)) ? 4000 : 3300) : 0;
+  function parseRecordDate(s) {
+    if (!s) return null;
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s);
+    if (!m) return null;
+    return { year: parseInt(m[1], 10), month: parseInt(m[2], 10), day: parseInt(m[3], 10) };
+  }
+
+  function calcRecord(r, month, year) {
+    var dateInfo = parseRecordDate(r.date);
+    var dateMismatch = !!(dateInfo && (dateInfo.year !== year || dateInfo.month !== month));
+
+    if (dateMismatch) {
+      // 対象年月と稼働日が一致しない記録は、この記録だけ給与計算から除外する
+      return {
+        kiso: 0, gomi: 0, sheets: 0, laundry: 0, over: 0, dayServ: 0, nightServ: 0,
+        restockExpense: 0, restockAllowance: 0, lost: 0, other: 0, total: 0,
+        dateMismatch: true
+      };
+    }
+
+    var kiso = (r.cleaned === "はい" && dateInfo) ? (isSpecialDate(dateInfo.month, dateInfo.day) ? 4000 : 3300) : 0;
     var gomi = r.gomi === "した" ? 300 : 0;
     var sheets = num(r.sheets) * 150;
     var laundry = num(r.laundry);
@@ -479,7 +560,12 @@
         restockSum += num(r.restockItems[ri].amount);
       }
     }
+    // 支給額の計算式は今まで通り restockSum * 1.1 のまま変えない（金額を1円たりともズレさせないため）
     var restock = restockSum * 1.1;
+    // 立替経費精算（実費そのまま）と商品補充手当（10%相当）を、上のrestockから逆算する。
+    // restockExpense + restockAllowance が必ずrestockと完全一致するよう、独立に計算せず引き算で出す。
+    var restockExpense = restockSum;
+    var restockAllowance = restock - restockExpense;
     var lost = num(r.lost) * 500;
     var other = 0;
     if (r.otherItems) {
@@ -490,8 +576,9 @@
     var total = kiso + gomi + sheets + laundry + over + dayServ + nightServ + restock + lost + other;
     return {
       kiso: kiso, gomi: gomi, sheets: sheets, laundry: laundry, over: over,
-      dayServ: dayServ, nightServ: nightServ, restock: restock, lost: lost, other: other,
-      total: total
+      dayServ: dayServ, nightServ: nightServ, restock: restock,
+      restockExpense: restockExpense, restockAllowance: restockAllowance,
+      lost: lost, other: other, total: total, dateMismatch: false
     };
   }
 
@@ -516,9 +603,18 @@
 
   function fieldControlHtml(def, value, idx) {
     var name = "r" + idx + "_" + def.key;
-    if (def.type === "select-day") {
-      return '<select data-key="' + def.key + '" data-idx="' + idx + '" name="' + name + '">' +
-        optionsHtml(DAY_OPTS, function (v) { return v + "日"; }, value) + "</select>";
+    if (def.type === "date") {
+      return '<input type="date" data-key="' + def.key + '" data-idx="' + idx + '" name="' + name +
+        '" value="' + escapeHtml(value) + '">';
+    }
+    if (def.type === "select-yn") {
+      var ynOpts = ["はい", "いいえ"];
+      var ynHtml = '<option value="">-</option>';
+      for (var y = 0; y < ynOpts.length; y++) {
+        var ySel = ynOpts[y] === value ? " selected" : "";
+        ynHtml += '<option value="' + ynOpts[y] + '"' + ySel + '>' + ynOpts[y] + "</option>";
+      }
+      return '<select data-key="' + def.key + '" data-idx="' + idx + '" name="' + name + '">' + ynHtml + "</select>";
     }
     if (def.type === "select-umu") {
       var opts = ["した", "していない"];
@@ -591,7 +687,15 @@
     return html;
   }
 
-  function renderMonthName() {
+  function renderMonthYearName() {
+    var yearSel = document.getElementById("year");
+    var curYear = new Date().getFullYear();
+    var years = [];
+    for (var y = curYear - 1; y <= curYear + 2; y++) years.push(y);
+    if (years.indexOf(state.year) === -1) years.push(state.year);
+    years.sort(function (a, b) { return a - b; });
+    yearSel.innerHTML = optionsHtml(years, function (v) { return v + "年"; }, state.year).replace('<option value="">-</option>', "");
+
     var monthSel = document.getElementById("month");
     var months = [];
     for (var i = 1; i <= 12; i++) months.push(i);
@@ -616,17 +720,79 @@
     }
   }
 
+  // ---- 入力値の異常チェック（警告のみ、登録は止めない） ----
+  function getRecordWarnings(r) {
+    var warnings = [];
+    function checkField(rawVal, label, cap) {
+      var raw = rawNum(rawVal);
+      if (raw < 0) {
+        warnings.push(label + "がマイナスになっています（0として計算します）");
+      } else if (cap && raw > cap) {
+        warnings.push(label + "が高額です（" + yen(cap) + "超）。入力内容をご確認ください");
+      }
+    }
+    checkField(r.laundry, "ランドリー代金", 10000);
+    if (r.restockItems) {
+      r.restockItems.forEach(function (it, i) {
+        if (itemNameFilled(it) || rawNum(it.amount) !== 0) {
+          checkField(it.amount, "購入した商品「" + (it.name || (i + 1) + "つ目") + "」の金額", 20000);
+        }
+      });
+    }
+    if (r.otherItems) {
+      r.otherItems.forEach(function (it, i) {
+        if (itemNameFilled(it) || rawNum(it.amount) !== 0) {
+          checkField(it.amount, "その他「" + (it.name || (i + 1) + "つ目") + "」の金額", 20000);
+        }
+      });
+    }
+    return warnings;
+  }
+
+  function findDuplicateDates() {
+    var counts = {};
+    state.records.forEach(function (r) {
+      if (r.date) counts[r.date] = (counts[r.date] || 0) + 1;
+    });
+    return counts;
+  }
+
+  function recordBreakdownHtml(calc) {
+    var lines = [];
+    for (var i = 0; i < CATEGORY_DEFS.length; i++) {
+      var def = CATEGORY_DEFS[i];
+      var v = calc[def.key];
+      if (v > 0) {
+        lines.push('<div class="summary-row"><span>' + def.label + '</span><span class="v">' + yen(v) + "</span></div>");
+      }
+    }
+    if (!lines.length) return "";
+    return '<div class="record-breakdown">' + lines.join("") + "</div>";
+  }
+
   function renderRecords() {
     var container = document.getElementById("records");
+    var dupCounts = findDuplicateDates();
     var html = "";
     for (var idx = 0; idx < state.records.length; idx++) {
       var r = state.records[idx];
-      var calc = calcRecord(r, num(state.month));
+      var calc = calcRecord(r, num(state.month), num(state.year));
       html += '<div class="record" data-record="' + idx + '">';
       html += '<div class="record-head"><span>' + (idx + 1) + ' 回目の記録</span>' +
         (state.records.length > 1 ? '<button class="del" data-del="' + idx + '" type="button">削除</button>' : "") +
         "</div>";
       html += '<div class="record-body">';
+
+      if (calc.dateMismatch) {
+        html += '<div class="banner banner-danger">対象月と稼働日の月が一致していません（この記録は計算に含まれません）</div>';
+      }
+      if (r.date && dupCounts[r.date] > 1) {
+        html += '<div class="banner banner-warn">同じ日の稼働記録がすでにあります。重複していないか確認してください</div>';
+      }
+      getRecordWarnings(r).forEach(function (w) {
+        html += '<div class="banner banner-warn">' + escapeHtml(w) + "</div>";
+      });
+
       for (var f = 0; f < FIELD_DEFS.length; f++) {
         var def = FIELD_DEFS[f];
         if (def.type === "restock-items") {
@@ -643,6 +809,7 @@
           "</div>";
       }
       html += "</div>";
+      html += recordBreakdownHtml(calc);
       html += '<div class="record-total"><span>この記録の合計</span><span class="amt">' + yen(calc.total) + "</span></div>";
       html += "</div>";
     }
@@ -654,7 +821,7 @@
     for (var i = 0; i < CATEGORY_DEFS.length; i++) totals[CATEGORY_DEFS[i].key] = 0;
     var grand = 0;
     for (var j = 0; j < state.records.length; j++) {
-      var c = calcRecord(state.records[j], num(state.month));
+      var c = calcRecord(state.records[j], num(state.month), num(state.year));
       totals.kiso += c.kiso;
       totals.gomi += c.gomi;
       totals.sheets += c.sheets;
@@ -662,28 +829,39 @@
       totals.over += c.over;
       totals.dayServ += c.dayServ;
       totals.nightServ += c.nightServ;
-      totals.restock += c.restock;
+      totals.restockExpense += c.restockExpense;
+      totals.restockAllowance += c.restockAllowance;
       totals.lost += c.lost;
       totals.other += c.other;
       grand += c.total;
     }
+    var wageTotal = 0, expenseTotal = 0;
+    for (var k = 0; k < CATEGORY_DEFS.length; k++) {
+      var d = CATEGORY_DEFS[k];
+      if (d.group === "wage") wageTotal += totals[d.key];
+      else expenseTotal += totals[d.key];
+    }
+
     var breakdownEl = document.getElementById("breakdown");
     var html = "";
-    for (var k = 0; k < CATEGORY_DEFS.length; k++) {
-      var def2 = CATEGORY_DEFS[k];
+    for (var mI = 0; mI < CATEGORY_DEFS.length; mI++) {
+      var def2 = CATEGORY_DEFS[mI];
       html += '<div class="summary-row"><span>' + def2.label + '</span><span class="v">' + yen(totals[def2.key]) + "</span></div>";
     }
     breakdownEl.innerHTML = html;
+
+    document.getElementById("wageTotal").textContent = yen(wageTotal);
+    document.getElementById("expenseTotal").textContent = yen(expenseTotal);
     document.getElementById("grandTotal").textContent = yen(grand);
     var payout = Math.ceil(grand / 50) * 50;
     document.getElementById("payoutAmt").textContent = yen(payout);
-    return { grand: grand, payout: payout };
+    return { grand: grand, payout: payout, wageTotal: wageTotal, expenseTotal: expenseTotal };
   }
 
   function updateRecordTotalDisplay(idx) {
     var recordEl = document.querySelector('.record[data-record="' + idx + '"] .record-total .amt');
     if (recordEl) {
-      var calc = calcRecord(state.records[idx], num(state.month));
+      var calc = calcRecord(state.records[idx], num(state.month), num(state.year));
       recordEl.textContent = yen(calc.total);
     }
   }
@@ -697,6 +875,13 @@
   }
 
   // ---- events ----
+  document.getElementById("year").addEventListener("change", function (e) {
+    state.year = num(e.target.value);
+    saveState();
+    renderRecords();
+    recalcTotals();
+  });
+
   document.getElementById("month").addEventListener("change", function (e) {
     state.month = num(e.target.value);
     saveState();
@@ -707,7 +892,7 @@
   document.getElementById("name").addEventListener("change", function (e) {
     state.name = e.target.value;
     saveState();
-    renderMonthName();
+    renderMonthYearName();
   });
 
   document.getElementById("nameOther").addEventListener("input", function (e) {
@@ -790,18 +975,24 @@
     recalcTotals();
   });
 
+  // 値が確定したタイミング（フォーカスが外れた・プルダウンを選んだ）で、
+  // 警告バナー・重複表示・不一致表示を含めて記録欄全体を作り直す
   document.getElementById("records").addEventListener("change", function (e) {
     var t = e.target;
-    if (t.tagName === "SELECT") {
+    // data-keyを持つ要素（select・日付・テキスト）は、changeでも念のため必ず反映する
+    // （"input"イベントが先に発火している前提だが、ブラウザによる違いに備えた二重の安全策）
+    if (t.hasAttribute && t.hasAttribute("data-key")) {
       var key = t.getAttribute("data-key");
-      var idx = t.getAttribute("data-idx");
-      if (key === null || idx === null) return;
-      idx = parseInt(idx, 10);
-      state.records[idx][key] = t.value;
+      var idx = parseInt(t.getAttribute("data-idx"), 10);
+      if (t.getAttribute("inputmode") === "decimal") {
+        state.records[idx][key] = normalizeMoneyInput(t);
+      } else {
+        state.records[idx][key] = t.value;
+      }
       saveState();
-      updateRecordTotalDisplay(idx);
-      recalcTotals();
     }
+    renderRecords();
+    recalcTotals();
   });
 
   document.getElementById("records").addEventListener("click", function (e) {
@@ -845,18 +1036,26 @@
 
   document.getElementById("resetBtn").addEventListener("click", function () {
     if (confirm("入力した内容をすべて消して、最初からやり直しますか？")) {
-      state = { month: state.month, name: "", nameOther: "", records: [blankRecord()] };
+      state = { month: state.month, year: state.year, name: "", nameOther: "", records: [blankRecord()] };
       saveState();
-      renderMonthName();
+      renderMonthYearName();
       renderRecords();
       recalcTotals();
       showToast("リセットしました");
     }
   });
 
-  function describeRecord(r, month) {
+  function describeRecord(r, month, year) {
+    var calc = calcRecord(r, num(month), num(year));
+    var dateInfo = parseRecordDate(r.date);
+    var dayLabel = dateInfo ? (dateInfo.month + "/" + dateInfo.day) : "（稼働日未入力）";
+
+    if (calc.dateMismatch) {
+      return dayLabel + "：⚠対象月と稼働日が一致していないため、計算対象外です";
+    }
+
     var parts = [];
-    if (r.date) parts.push("掃除");
+    if (r.cleaned === "はい") parts.push("清掃あり");
     if (r.gomi === "した") parts.push("ゴミ回収");
     if (num(r.sheets) > 0) parts.push("シーツ" + num(r.sheets) + "組");
     if (num(r.laundry) > 0) parts.push("ランドリー" + yen(num(r.laundry)));
@@ -865,7 +1064,11 @@
     if (num(r.nightMin) > 0) parts.push("夜接客" + num(r.nightMin) + "分");
     if (r.restockItems) {
       var restockNames = r.restockItems.filter(itemNameFilled).map(function (it) {
-        return it.name + (num(it.amount) > 0 ? "(" + yen(num(it.amount)) + ")" : "");
+        var amt = num(it.amount);
+        if (amt <= 0) return it.name;
+        var itemRestock = amt * 1.1;
+        var itemAllowance = itemRestock - amt;
+        return it.name + "(立替" + yen(amt) + "＋手当" + yen(itemAllowance) + ")";
       });
       if (restockNames.length) parts.push("商品補充:" + restockNames.join("・"));
     }
@@ -876,19 +1079,30 @@
       });
       if (otherNames.length) parts.push("その他:" + otherNames.join("・"));
     }
-    var dayLabel = r.date ? (num(month) + "/" + num(r.date)) : "（日付未入力）";
-    var calc = calcRecord(r, num(month));
     var detail = parts.length ? parts.join("・") : "（未入力）";
     return dayLabel + "：" + detail + " → " + yen(calc.total);
   }
 
   document.getElementById("copyBtn").addEventListener("click", function () {
+    // ③ 名前・稼働日の必須チェック（結果コピー時のみ。画面上のリアルタイム計算は止めない）
+    var displayName = state.name === "__other__" ? state.nameOther : state.name;
+    var missing = [];
+    if (!displayName || !String(displayName).trim()) missing.push("お名前を入力してください");
+    state.records.forEach(function (r, i) {
+      if (!r.date) missing.push((i + 1) + "回目の記録：稼働日を入力してください");
+    });
+    if (missing.length) {
+      alert(missing.join("\n"));
+      return;
+    }
+
     var totals = recalcTotals();
-    var displayName = state.name === "__other__" ? (state.nameOther || "（未入力）") : (state.name || "（未入力）");
-    var lines = state.records.map(function (r) { return describeRecord(r, state.month); });
-    var text = "【孫八 給料報告】\n対象月: " + num(state.month) + "月\nお名前: " + displayName +
+    var lines = state.records.map(function (r) { return describeRecord(r, state.month, state.year); });
+    var text = "【孫八 給料報告】\n対象年月: " + num(state.year) + "年" + num(state.month) + "月\nお名前: " + displayName +
       "\n\n" + lines.join("\n") +
-      "\n\n合計金額: " + yen(totals.grand) + "\n支給額: " + yen(totals.payout);
+      "\n\n給与・手当: " + yen(totals.wageTotal) +
+      "\n立替経費精算: " + yen(totals.expenseTotal) +
+      "\n合計金額: " + yen(totals.grand) + "\n支給額: " + yen(totals.payout);
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(function () {
         showToast("コピーしました。LINEに貼り付けてください");
@@ -900,8 +1114,41 @@
     }
   });
 
+  function hasAnyData(st) {
+    for (var i = 0; i < st.records.length; i++) {
+      var r = st.records[i];
+      if (r.date || r.cleaned || r.gomi || r.sheets || r.laundry || r.overMin || r.dayMin || r.nightMin || r.lost) return true;
+      if (r.restockItems && r.restockItems.some(function (it) {
+        return itemNameFilled(it) || (it.amount && String(it.amount).trim() !== "");
+      })) return true;
+      if (r.otherItems && r.otherItems.some(function (it) {
+        return itemNameFilled(it) || (it.amount && String(it.amount).trim() !== "");
+      })) return true;
+    }
+    return false;
+  }
+
+  // 実際の今年月と、保存されている対象年月がずれていたら、新しい月として始めるか確認する
+  (function checkNewMonth() {
+    var now = new Date();
+    var currentMonth = now.getMonth() + 1;
+    var currentYear = now.getFullYear();
+    if ((state.month !== currentMonth || state.year !== currentYear) && hasAnyData(state)) {
+      var startFresh = confirm(
+        "前回は" + state.year + "年" + state.month + "月のデータが入力されたままです。\n" +
+        currentYear + "年" + currentMonth + "月分として新しく入力を始めますか？\n\n" +
+        "OK：新しい月として最初からやり直す\n" +
+        "キャンセル：前回のデータをそのまま続ける（まだ報告していない場合など）"
+      );
+      if (startFresh) {
+        state = { month: currentMonth, year: currentYear, name: state.name, nameOther: state.nameOther, records: [blankRecord()] };
+        saveState();
+      }
+    }
+  })();
+
   // ---- init ----
-  renderMonthName();
+  renderMonthYearName();
   renderRecords();
   recalcTotals();
 })();
