@@ -53,7 +53,7 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://mago8.jp/">
   <!-- LCP改善: ヒーロー背景を最優先でプリロード -->
-  <link rel="preload" as="image" href="top.jpg">
+  <link rel="preload" as="image" type="image/webp" href="assets/images/top.webp">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -202,7 +202,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: url('top.jpg') center/cover no-repeat;
+      background: url('assets/images/top.webp') center/cover no-repeat;
       animation: heroZoom 8s ease-out forwards;
       z-index: 0;
     }
@@ -876,7 +876,7 @@
 
 <!-- HEADER -->
 <header>
-  <a class="logo" href="#"><img src="moji.jpg" alt="孫八" style="height: 38px; mix-blend-mode: screen; filter: invert(1);"></a>
+  <a class="logo" href="#"><img src="assets/images/moji-342.webp" alt="孫八" style="height: 38px; mix-blend-mode: screen; filter: invert(1);"></a>
   <div class="nav-wrap">
   <nav id="main-nav">
     <a href="#about">孫八について</a>
@@ -897,7 +897,7 @@
   <span class="hero-sub">KOMINKA YADO MAGO8</span>
   <a href="#experience" style="font-size: 1.05rem; color: var(--gold); letter-spacing: 0.3em; margin-bottom: 8px; animation: fadeUp 1s ease 0.5s both; border-bottom: 1px solid rgba(200,169,110,0.5); display: inline-block; padding-bottom: 6px; text-decoration: none; cursor: pointer; transition: transform 0.25s ease, font-size 0.25s ease;" onmouseover="this.style.transform='scale(1.12)';this.style.color='rgba(255,245,225,0.95)'" onmouseout="this.style.transform='scale(1)';this.style.color=''">五感で楽しむ</a>
   <h1>古民家宿</h1>
-  <img src="moji.jpg" alt="古民家宿 孫八" style="width: clamp(260px, 55vw, 680px); height: auto; aspect-ratio: 3 / 1; margin-bottom: 24px; mix-blend-mode: screen; filter: invert(1) drop-shadow(0 2px 20px rgba(255,255,255,0.3));">
+  <img src="assets/images/moji-780.webp" srcset="assets/images/moji-780.webp 780w, moji.jpg 2172w" sizes="clamp(260px, 55vw, 680px)" alt="古民家宿 孫八" style="width: clamp(260px, 55vw, 680px); height: auto; aspect-ratio: 3 / 1; margin-bottom: 24px; mix-blend-mode: screen; filter: invert(1) drop-shadow(0 2px 20px rgba(255,255,255,0.3));">
   <p class="hero-main-copy">泊まるだけじゃない。<br>みんなで過ごすための、<span style="white-space:nowrap;">一棟貸切。</span></p>
   <p class="hero-tagline">築120年の一棟貸切。<br>里山の静けさと、満天の星空の中へ。</p>
   <a href="#booking" class="hero-btn">ご予約はこちら</a>
@@ -908,7 +908,7 @@
 <section class="about" id="about">
   <div class="section-inner">
     <div class="about-grid">
-      <img src="kominka.jpg" alt="古民家 孫八" class="about-img" loading="lazy">
+      <img src="assets/images/kominka.webp" alt="古民家 孫八" class="about-img" loading="lazy">
       <div>
         <span class="section-label">ABOUT</span>
         <h2>孫八について</h2>
@@ -929,7 +929,7 @@
     <div class="divider"></div>
     <div class="features-grid">
       <div class="feature-card">
-        <div class="card-bg" style="background-image: url('120.jpg');"></div>
+        <div class="card-bg" style="background-image: url('assets/images/120.webp');"></div>
         <div class="card-overlay"></div>
         <div class="card-body">
           <h3>最大15名で一緒に泊まれる</h3>
@@ -937,7 +937,7 @@
         </div>
       </div>
       <div class="feature-card">
-        <div class="card-bg" style="background-image: url('taiken.jpg');"></div>
+        <div class="card-bg" style="background-image: url('assets/images/taiken.webp');"></div>
         <div class="card-overlay"></div>
         <div class="card-body">
           <h3>子どもも大人も楽しめる無料体験</h3>
@@ -945,7 +945,7 @@
         </div>
       </div>
       <div class="feature-card">
-        <div class="card-bg" style="background-image: url('shizen.jpg');"></div>
+        <div class="card-bg" style="background-image: url('assets/images/shizen.webp');"></div>
         <div class="card-overlay"></div>
         <div class="card-body">
           <h3>四季の自然を丸ごと楽しめる</h3>
@@ -965,7 +965,7 @@
     <div class="divider"></div>
     <div class="experience-list">
       <div class="exp-item">
-        <img src="dokutu.jpg" alt="洞窟探検・里山散策ツアー" data-lb loading="lazy">
+        <img src="assets/images/dokutu-thumb.webp" alt="洞窟探検・里山散策ツアー" data-lb data-full="dokutu.jpg" loading="lazy">
         <div class="exp-body">
           <h3>洞窟探検・里山散策ツアー <span class="badge-yoyaku">要予約</span></h3>
           <p>地元ガイドが案内する秘境の洞窟探検と、里山の自然や文化を感じる散策ツアー。非日常の冒険体験をどうぞ。無料でご参加いただけます。</p>
@@ -976,7 +976,7 @@
         </div>
       </div>
       <div class="exp-item">
-        <img src="taiken.jpg" alt="木工旋盤体験" data-lb loading="lazy">
+        <img src="assets/images/taiken-thumb.webp" alt="木工旋盤体験" data-lb data-full="taiken.jpg" loading="lazy">
         <div class="exp-body">
           <h3>木工旋盤体験 <span class="badge-yoyaku">要予約</span></h3>
           <p>木工職人が直接指導。世界にひとつだけの木工作品を作ろう。無料でご体験いただけます。</p>
@@ -987,21 +987,21 @@
         </div>
       </div>
       <div class="exp-item">
-        <img src="hoshi.jpg" alt="星空体験" data-lb loading="lazy">
+        <img src="assets/images/hoshi-thumb.webp" alt="星空体験" data-lb data-full="hoshi.jpg" loading="lazy">
         <div class="exp-body">
           <h3>星空体験</h3>
           <p>光害の少ない里山の夜空に広がる満天の星。肉眼でも天の川が見える贅沢なひとときを。</p>
         </div>
       </div>
       <div class="exp-item">
-        <img src="kaya2.jpg" alt="蚊帳体験" data-lb loading="lazy">
+        <img src="assets/images/kaya2-thumb.webp" alt="蚊帳体験" data-lb data-full="kaya2.jpg" loading="lazy">
         <div class="exp-body">
           <h3>蚊帳体験</h3>
           <p>昔ながらの蚊帳を体験。懐かしい里山の暮らしをお楽しみください。</p>
         </div>
       </div>
       <div class="exp-item">
-        <img src="ana.jpg" alt="アナログおもちゃ体験" data-lb loading="lazy">
+        <img src="assets/images/ana-thumb.webp" alt="アナログおもちゃ体験" data-lb data-full="ana.jpg" loading="lazy">
         <div class="exp-body">
           <h3>アナログおもちゃ体験</h3>
           <p>人生ゲーム・UNO・トランプ・麻雀・ジェンガなど豊富なアナログおもちゃを完備。テレビのない宿だからこそ、会話と笑いが生まれる時間を。</p>
@@ -1012,7 +1012,7 @@
         </div>
       </div>
       <div class="exp-item">
-        <img src="raku.jpg" alt="落書き体験" data-lb loading="lazy">
+        <img src="assets/images/raku-thumb.webp" alt="落書き体験" data-lb data-full="raku.jpg" loading="lazy">
         <div class="exp-body">
           <h3>落書き体験</h3>
           <p>チョークで屋外に自由に描こう。子どもも大人も夢中になれる開放的な体験。</p>
@@ -1023,7 +1023,7 @@
         </div>
       </div>
       <div class="exp-item">
-        <img src="chie.jpg" alt="知恵の輪チャレンジ" data-lb loading="lazy">
+        <img src="assets/images/chie-thumb.webp" alt="知恵の輪チャレンジ" data-lb data-full="chie.jpg" loading="lazy">
         <div class="exp-body">
           <h3>知恵の輪チャレンジ</h3>
           <p>木工職人手作りの知恵の輪。解けた人にはプレゼントあり！</p>
@@ -1034,7 +1034,7 @@
         </div>
       </div>
       <div class="exp-item">
-        <img src="kawa.jpg" alt="川遊び" data-lb loading="lazy">
+        <img src="assets/images/kawa-thumb.webp" alt="川遊び" data-lb data-full="kawa.jpg" loading="lazy">
         <div class="exp-body">
           <h3>川遊び（夏季限定）</h3>
           <p>すぐそばを流れる清流で川遊び。子どもたちに大人気の夏の定番体験。</p>
@@ -1045,14 +1045,14 @@
         </div>
       </div>
       <div class="exp-item">
-        <img src="mushi.jpg" alt="虫取り体験" data-lb loading="lazy">
+        <img src="assets/images/mushi-thumb.webp" alt="虫取り体験" data-lb data-full="mushi.jpg" loading="lazy">
         <div class="exp-body">
           <h3>虫取り体験</h3>
           <p>虫取りセット完備。子どもたちが夢中になる、里山の生き物探し。</p>
         </div>
       </div>
       <div class="exp-item">
-        <img src="gyara.jpg" alt="木工ギャラリー" data-lb loading="lazy">
+        <img src="assets/images/gyara-thumb.webp" alt="木工ギャラリー" data-lb data-full="gyara.jpg" loading="lazy">
         <div class="exp-body">
           <h3>木工ギャラリー見学・購入 <span class="badge-yoyaku">要予約</span></h3>
           <p>地元の木工職人による作品を展示・販売。手仕事の温もりが感じられる一点物の木工品をご覧いただけます。お気に入りの作品はその場でご購入も可能です。</p>
@@ -1063,21 +1063,21 @@
         </div>
       </div>
       <div class="exp-item">
-        <img src="kotatu.jpg" alt="こたつ体験" data-lb loading="lazy">
+        <img src="assets/images/kotatu-thumb.webp" alt="こたつ体験" data-lb data-full="kotatu.jpg" loading="lazy">
         <div class="exp-body">
           <h3>こたつ体験（冬季限定）</h3>
           <p>冬の古民家でこたつに入りながらゆったりと過ごす、日本ならではの温かいひととき。</p>
         </div>
       </div>
       <div class="exp-item">
-        <img src="hotaru.jpg" alt="蛍鑑賞" data-lb loading="lazy">
+        <img src="assets/images/hotaru-thumb.webp" alt="蛍鑑賞" data-lb data-full="hotaru.jpg" loading="lazy">
         <div class="exp-body">
           <h3>ほたる鑑賞（季節限定）</h3>
           <p>孫八の周辺でも、夏の夜にたくさんのほたるが乱舞します。清流に舞うほたるの光は、夏の夜だけの幻想的な光景。ぜひお楽しみください。</p>
         </div>
       </div>
       <div class="exp-item">
-        <img src="BBQ1.jpg" alt="バーベキュー体験" data-lb loading="lazy">
+        <img src="assets/images/BBQ1-thumb.webp" alt="バーベキュー体験" data-lb data-full="BBQ1.jpg" loading="lazy">
         <div class="exp-body">
           <h3>バーベキュー体験 <span class="badge-yoyaku">要予約</span><span class="badge-new">NEW</span></h3>
           <p>専用ガスバーベキューグリルと専用グリルプレートを完備。食材はお持ち込みください。ご利用は8:00〜20:00、指定スペースのみ。無料でご利用いただけます。<br>※炭を使用したバーベキューは山火事防止のため禁止しております。</p>
@@ -1377,9 +1377,9 @@
       <div class="info-box">
         <h3>駐車場</h3>
         <div style="display:flex; gap:8px; margin-bottom:12px;">
-          <img src="akuse1.jpg" alt="アクセス案内1" data-lb style="width:72px; height:72px; object-fit:cover; border-radius:4px; cursor:pointer; display:block; transition:opacity 0.2s; flex-shrink:0;" loading="lazy">
-          <img src="akuse2.jpg" alt="アクセス案内2" data-lb style="width:72px; height:72px; object-fit:cover; border-radius:4px; cursor:pointer; display:block; transition:opacity 0.2s; flex-shrink:0;" loading="lazy">
-          <img src="p.jpg" alt="駐車場" data-lb style="width:72px; height:72px; object-fit:cover; border-radius:4px; cursor:pointer; display:block; transition:opacity 0.2s; flex-shrink:0;" loading="lazy">
+          <img src="assets/images/akuse1-thumb.webp" alt="アクセス案内1" data-lb data-full="akuse1.jpg" style="width:72px; height:72px; object-fit:cover; border-radius:4px; cursor:pointer; display:block; transition:opacity 0.2s; flex-shrink:0;" loading="lazy">
+          <img src="assets/images/akuse2-thumb.webp" alt="アクセス案内2" data-lb data-full="akuse2.jpg" style="width:72px; height:72px; object-fit:cover; border-radius:4px; cursor:pointer; display:block; transition:opacity 0.2s; flex-shrink:0;" loading="lazy">
+          <img src="assets/images/p-thumb.webp" alt="駐車場" data-lb data-full="p.jpg" style="width:72px; height:72px; object-fit:cover; border-radius:4px; cursor:pointer; display:block; transition:opacity 0.2s; flex-shrink:0;" loading="lazy">
         </div>
         <ul>
           <li>無料駐車場あり（5台）</li>
@@ -1454,8 +1454,8 @@
           <li>スタンプは室内設置の孫八ギャラリーにおいてあります</li>
         </ul>
         <div style="display:flex; gap:8px; margin-top:10px;">
-          <img src="stamp2.jpg" alt="スタンプラリー設置場所2" data-lb style="width:80px; height:80px; object-fit:cover; border-radius:4px; cursor:pointer;" loading="lazy">
-          <img src="stamp1.jpg" alt="スタンプラリー設置場所1" data-lb style="width:80px; height:80px; object-fit:cover; border-radius:4px; cursor:pointer;" loading="lazy">
+          <img src="assets/images/stamp2-thumb.webp" alt="スタンプラリー設置場所2" data-lb data-full="stamp2.jpg" style="width:80px; height:80px; object-fit:cover; border-radius:4px; cursor:pointer;" loading="lazy">
+          <img src="assets/images/stamp1-thumb.webp" alt="スタンプラリー設置場所1" data-lb data-full="stamp1.jpg" style="width:80px; height:80px; object-fit:cover; border-radius:4px; cursor:pointer;" loading="lazy">
         </div>
       </div>
       <div class="info-box">
@@ -1519,7 +1519,7 @@
   const lbImg = document.getElementById('lightbox-img');
   document.querySelectorAll('img[data-lb]').forEach(img => {
     img.addEventListener('click', () => {
-      lbImg.src = img.src;
+      lbImg.src = img.dataset.full || img.src;
       lbImg.alt = img.alt;
       lb.classList.add('open');
     });
