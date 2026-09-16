@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mago8hotel.github.io/shiga/sitemap.xml
+Sitemap: https://mago8.jp/sitemap.xml
