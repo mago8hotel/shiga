@@ -26,14 +26,12 @@ def save(source, name, size=None, square=False, lossless=False, quality=88):
 if __name__ == '__main__':
     OUT.mkdir(parents=True, exist_ok=True)
     # Keep full dimensions and existing cover positioning for large photos.
-    for stem in ('top', '120', 'shizen', 'kominka'):
+    # CHARM card backgrounds (120 / taiken / shizen) use background-size: cover in an
+    # aspect-ratio 4/3 box, so the needed resolution is box height x DPR, not box width.
+    # In the single-column tablet layout (744-768px, DPR2) the box is up to 546 CSS px
+    # tall, so any downscale enlarges the photo there. Do not resize them.
+    for stem in ('top', '120', 'taiken', 'shizen', 'kominka'):
         save(f'{stem}.jpg', f'{stem}.webp')
-    # CHARM cards use background-size: cover in an aspect-ratio 4/3 box, so a
-    # landscape photo fills the box by height: needed pixels = box height x DPR,
-    # not box width. On iPhones (<=430 CSS px) the card is at most 292.5 CSS px
-    # tall, i.e. 878 device px at DPR3, so cap taiken.jpg (1567x1045) at 880px tall.
-    # 120.jpg (1400x788) is already below that and must stay at full size.
-    save('taiken.jpg', 'taiken.webp', (10000, 880))
     # Same 3:1 aspect ratio; use the original logo for larger/DPR-heavy screens.
     for width in (342, 780):
         save('moji.jpg', f'moji-{width}.webp', (width, width // 3), lossless=True)
