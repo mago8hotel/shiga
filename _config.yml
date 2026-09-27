@@ -1,0 +1,6 @@
+# GitHub Pages(Jekyll)の公開対象から作業用ファイルを除外する。
+# リポジトリには残るが、https://mago8.jp/ 配下では配信されなくなる。
+exclude:
+  - CLAUDE.md
+  - docs
+  - scripts
