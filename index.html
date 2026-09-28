@@ -46,7 +46,8 @@
     "maximumAttendeeCapacity": 15,
     "sameAs": [
       "https://www.airbnb.com/h/mago8",
-      "https://www.instagram.com/mago8_japan_hotel"
+      "https://www.instagram.com/mago8_japan_hotel",
+      "https://lin.ee/QRVGjZa"
     ]
   }
   </script>
@@ -679,6 +680,82 @@
 
     .cta-btn.outline:hover { background: var(--gold); color: var(--text); }
 
+    /* ===== LINE ===== */
+    .line-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: #06C755;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      font-size: 1rem;
+      border-radius: 4px;
+      transition: background 0.2s;
+      margin: 8px;
+      font-family: 'Hiragino Mincho ProN', 'Yu Mincho', Georgia, serif;
+    }
+    .line-btn:hover { background: #05b34c; }
+    .line-btn svg { flex-shrink: 0; }
+
+    .line-section {
+      background: var(--cream);
+      padding: 60px 20px;
+      border-top: 1px solid #e0d8cc;
+    }
+    .line-section .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      gap: 48px;
+      align-items: center;
+    }
+    .line-section-text { flex: 1; }
+    .line-section-text h2 {
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-weight: normal;
+      letter-spacing: 0.12em;
+      color: var(--brown);
+      margin-bottom: 16px;
+    }
+    .line-section-text p { font-size: 0.95rem; margin-bottom: 1em; }
+    .line-section-text .line-note {
+      font-size: 0.85rem;
+      color: #8a7a6a;
+      margin-top: 16px;
+      margin-bottom: 0;
+      border-left: 2px solid #e0d8cc;
+      padding-left: 12px;
+    }
+    .line-section-cta { flex-shrink: 0; text-align: center; }
+    @media (max-width: 768px) {
+      .line-section .section-inner {
+        flex-direction: column;
+        gap: 24px;
+      }
+      .line-section-cta { width: 100%; }
+      .line-section-cta .line-btn { width: 100%; justify-content: center; }
+    }
+
+    /* フッターLINEボタン */
+    .footer-line-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: #06C755;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.82rem;
+      border-radius: 4px;
+      letter-spacing: 0.08em;
+      margin-top: 16px;
+      transition: background 0.2s;
+      font-family: 'Hiragino Mincho ProN', 'Yu Mincho', Georgia, serif;
+    }
+    .footer-line-btn:hover { background: #05b34c; }
+
     /* ===== FOOTER ===== */
     footer {
       background: #1a0e07;
@@ -1129,6 +1206,30 @@
   </div>
 </section>
 
+<!-- LINE紹介 -->
+<section class="line-section" id="line-contact">
+  <div class="section-inner">
+    <div class="line-section-text">
+      <span class="section-label">LINE OFFICIAL</span>
+      <h2>ご質問はLINEで<br>24時間お気軽に</h2>
+      <p>宿泊・設備・アクセス・周辺観光など、どんな些細なことでもLINEで24時間お答えします。予約前の方もお気軽にどうぞ。</p>
+      <p>宿泊予約をされた方は、洞窟・里山散策体験や木工体験・BBQのご相談もLINEで承ります。</p>
+      <p class="line-note">※洞窟・里山散策体験・木工体験・BBQのご予約は宿泊者の方限定です。</p>
+    </div>
+    <div class="line-section-cta">
+      <a href="https://lin.ee/QRVGjZa" class="line-btn" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="22" height="22" rx="5" fill="#fff" fill-opacity="0.2"/>
+          <path d="M11 3.5C6.86 3.5 3.5 6.37 3.5 9.9c0 2.14 1.19 4.03 3.02 5.24-.13.47-.46 1.7-.53 1.97-.08.33.12.33.26.24.1-.07 1.65-1.12 2.32-1.57.44.06.89.1 1.43.1 4.14 0 7.5-2.87 7.5-6.4S15.14 3.5 11 3.5z" fill="#fff"/>
+          <path d="M9.1 11.3H7.8V8.7h1.3v2.6zM11.65 11.3h-1.3V9.8l-1.05-1.1h1.3l.4.42.4-.42h1.3L11.65 9.8v1.5zM14.2 11.3h-1.3V8.7h1.3v2.6z" fill="#06C755"/>
+        </svg>
+        LINEで友だち追加
+      </a>
+      <p style="font-size:0.78rem; color:#8a7a6a; margin-top:10px; margin-bottom:0; letter-spacing:0.05em;">ご質問はLINEで24時間お答えします</p>
+    </div>
+  </div>
+</section>
+
 <!-- AMENITIES -->
 <section class="amenities" id="amenities">
   <div class="section-inner">
@@ -1390,6 +1491,11 @@
           <li>※駐車場への道は狭いためご注意ください</li>
           <li>冬季はスタッドレスタイヤ必須</li>
         </ul>
+        <p style="margin-top:14px; font-size:0.88rem; color:#5c3d2e;">
+          🗺️ 行き方のご質問は
+          <a href="https://lin.ee/QRVGjZa" target="_blank" rel="noopener" style="color:#06C755; font-weight:bold; text-decoration:none;">LINE</a>
+          で24時間受付しています。
+        </p>
       </div>
     </div>
     <div class="info-grid" style="margin-top: 32px;">
@@ -1482,10 +1588,17 @@
     <h2>ご予約・お問い合わせ</h2>
     <p>公式サイトよりご予約いただけます。<br>最新情報・お得な情報は公式SNSをご覧ください。</p>
     <a href="https://beds24.com/booking2.php?propid=344052&lang=ja" class="cta-btn" target="_blank" rel="noopener">空室を確認・予約する</a>
+    <a href="https://lin.ee/QRVGjZa" class="line-btn" target="_blank" rel="noopener">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="22" height="22" rx="5" fill="#fff" fill-opacity="0.2"/>
+        <path d="M11 3.5C6.86 3.5 3.5 6.37 3.5 9.9c0 2.14 1.19 4.03 3.02 5.24-.13.47-.46 1.7-.53 1.97-.08.33.12.33.26.24.1-.07 1.65-1.12 2.32-1.57.44.06.89.1 1.43.1 4.14 0 7.5-2.87 7.5-6.4S15.14 3.5 11 3.5z" fill="#fff"/>
+      </svg>
+      LINEでお問い合わせ
+    </a>
     <a href="https://www.instagram.com/mago8_japan_hotel?igsh=MTVhdGFpdG9sYTI5NA==" class="cta-btn outline" target="_blank" rel="noopener">Instagramで雰囲気を見る</a>
     <p style="margin-top: 40px; font-size: 0.95rem; color: var(--gold); letter-spacing: 0.12em; border: 1px solid rgba(200,169,110,0.4); display: inline-block; padding: 14px 32px;">
       <a href="tel:05017250960" style="color:var(--gold); text-decoration:none; display:block; margin-bottom:8px;">📞 050-1725-0960</a>
-      お問い合わせはお電話またはインスタグラムのDMにてお願いいたします。
+      お問い合わせはお電話またはLINE公式アカウントにてお受けします。
     </p>
   </div>
 </section>
@@ -1494,6 +1607,12 @@
 <footer>
   <span class="footer-name">古民家宿　孫八</span>
   <p>里山の静けさと、満天の星空の中へ。</p>
+  <a href="https://lin.ee/QRVGjZa" class="footer-line-btn" target="_blank" rel="noopener">
+    <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M11 3.5C6.86 3.5 3.5 6.37 3.5 9.9c0 2.14 1.19 4.03 3.02 5.24-.13.47-.46 1.7-.53 1.97-.08.33.12.33.26.24.1-.07 1.65-1.12 2.32-1.57.44.06.89.1 1.43.1 4.14 0 7.5-2.87 7.5-6.4S15.14 3.5 11 3.5z" fill="#fff"/>
+    </svg>
+    LINEで質問・体験予約
+  </a>
   <p class="license">旅館業法許可番号：滋賀県長浜保健所　滋賀県指令長保第13号</p>
   <p style="margin-top: 16px;">© 2024 古民家宿 孫八. All rights reserved.</p>
 </footer>
