@@ -6,7 +6,7 @@ from PIL import Image, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'assets' / 'images'
-THUMBNAILS = ('dokutu', 'taiken', 'hoshi', 'kaya2', 'ana', 'raku', 'chie',
+THUMBNAILS = ('dokutu', 'hoshi', 'kaya2', 'ana', 'raku', 'chie',
               'kawa', 'mushi', 'gyara', 'kotatu', 'hotaru', 'BBQ1',
               'akuse1', 'akuse2', 'p', 'stamp1', 'stamp2')
 
