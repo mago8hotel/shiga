@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja" data-lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>ご宿泊のご案内 | 古民家宿 孫八</title>
+  <link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png">
+  <link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <style>
+    :root {
+      --brown: #5c3d2e;
+      --light-brown: #8b6349;
+      --cream: #f5f0e8;
+      --warm-white: #fdfaf5;
+      --green: #4a6741;
+      --gold: #c8a96e;
+      --text: #2c1a0e;
+      --muted: #7a6657;
+      --line: #06C755;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", Georgia, serif;
+      background: var(--warm-white);
+      color: var(--text);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    /* 言語切替: <html data-lang> と一致しない言語の要素だけを隠す（表示側は各要素の本来のdisplayを維持） */
+    html[data-lang="ja"] body [data-lang="en"],
+    html[data-lang="en"] body [data-lang="ja"] { display: none !important; }
+
+    header {
+      background: var(--brown);
+      color: var(--cream);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    header .brand img { height: 30px; width: auto; filter: invert(1); mix-blend-mode: screen; }
+    header .brand span { font-size: 0.85rem; letter-spacing: 0.08em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .lang-switch { display: flex; border: 1px solid var(--gold); border-radius: 999px; overflow: hidden; flex-shrink: 0; }
+    .lang-switch button {
+      background: transparent; color: var(--cream); border: 0; padding: 6px 12px;
+      font-family: inherit; font-size: 0.85rem; cursor: pointer; line-height: 1.4;
+    }
+    .lang-switch button[aria-pressed="true"] { background: var(--gold); color: var(--text); }
+
+    .hero {
+      background: var(--cream);
+      padding: 28px 16px 22px;
+      text-align: center;
+      border-bottom: 1px solid #e6dccd;
+    }
+    .hero .label { color: var(--gold); font-size: 0.75rem; letter-spacing: 0.3em; }
+    .hero h1 { font-size: 1.45rem; font-weight: 500; margin: 6px 0 8px; letter-spacing: 0.08em; }
+    .hero p { color: var(--muted); font-size: 0.92rem; }
+
+    nav.toc { padding: 14px 16px 0; }
+    nav.toc ol { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+    nav.toc a {
+      display: inline-block; padding: 6px 12px; border-radius: 999px;
+      background: #fff; border: 1px solid #e6dccd; color: var(--brown);
+      text-decoration: none; font-size: 0.82rem;
+    }
+
+    main { padding: 8px 16px 48px; max-width: 760px; margin: 0 auto; }
+    section {
+      background: #fff; border: 1px solid #ece4d6; border-radius: 10px;
+      padding: 20px 16px; margin-top: 18px;
+    }
+    section h2 {
+      font-size: 1.12rem; font-weight: 600; color: var(--brown);
+      display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+      padding-bottom: 10px; border-bottom: 1px solid var(--gold);
+    }
+    section h2 .num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; border-radius: 50%; background: var(--gold); color: #fff;
+      font-size: 0.85rem; flex-shrink: 0;
+    }
+    section p, section li { font-size: 0.95rem; }
+    section p + p { margin-top: 8px; }
+    section ul { padding-left: 1.2em; }
+    section li + li { margin-top: 6px; }
+
+    .steps { list-style: none; padding: 0; counter-reset: step; }
+    .steps > li {
+      counter-increment: step; position: relative; padding-left: 40px; margin-top: 16px;
+    }
+    .steps > li::before {
+      content: counter(step); position: absolute; left: 0; top: 2px;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--brown); color: #fff; font-size: 0.85rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .steps h3 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+
+    figure { margin: 10px 0 0; }
+    figure img { width: 100%; height: auto; border-radius: 8px; display: block; }
+    figcaption { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+    .photo-placeholder {
+      width: 100%; aspect-ratio: 4 / 3; border-radius: 8px;
+      border: 2px dashed #d8ccb8; background: repeating-linear-gradient(45deg, #faf6ee, #faf6ee 10px, #f3ecdf 10px, #f3ecdf 20px);
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      color: var(--muted); font-size: 0.9rem; letter-spacing: 0.08em; padding: 12px;
+    }
+
+    .note {
+      margin-top: 12px; padding: 12px 14px; border-radius: 8px;
+      background: #fff7e8; border: 1px solid #ecd9ad; font-size: 0.9rem;
+    }
+    .note.warn { background: #fdf0ee; border-color: #e7b9b2; }
+    .note strong { color: var(--brown); }
+
+    .kv { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin-top: 8px; }
+    .kv dt { color: var(--muted); font-size: 0.9rem; white-space: nowrap; }
+    .kv dd { font-size: 1rem; }
+
+    .btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin-top: 12px; padding: 14px 18px; border-radius: 999px;
+      text-decoration: none; font-size: 1rem; font-weight: 600;
+    }
+    .btn.map { background: var(--brown); color: #fff; }
+    .btn.line { background: var(--line); color: #fff; }
+    .btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    .draft { display: inline-block; font-size: 0.72rem; color: #fff; background: #b6584a; padding: 2px 8px; border-radius: 4px; margin-left: 8px; vertical-align: middle; letter-spacing: 0.05em; }
+
+    footer { text-align: center; color: var(--muted); font-size: 0.78rem; padding: 0 16px 40px; }
+    footer a { color: var(--brown); }
+
+    @media (min-width: 700px) {
+      .hero h1 { font-size: 1.8rem; }
+      section { padding: 26px 24px; }
+      .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <img src="/assets/images/moji-342.webp" alt="孫八">
+    <span data-lang="ja">ご宿泊のご案内</span><span data-lang="en">Guest Guide</span>
+  </div>
+  <div class="lang-switch" role="group" aria-label="Language">
+    <button type="button" data-set-lang="ja" aria-pressed="true">日本語</button>
+    <button type="button" data-set-lang="en" aria-pressed="false">English</button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="label">GUEST GUIDE</div>
+  <h1 data-lang="ja">孫八 ご宿泊のご案内</h1>
+  <h1 data-lang="en">Welcome to Mago8</h1>
+  <p data-lang="ja">チェックインからチェックアウトまでの流れをまとめました。<br>到着前にご一読ください。</p>
+  <p data-lang="en">Everything you need from check-in to check-out.<br>Please read before you arrive.</p>
+</div>
+
+<nav class="toc" aria-label="目次">
+  <ol>
+    <li><a href="#checkin" data-lang="ja">1. チェックイン</a><a href="#checkin" data-lang="en">1. Check-in</a></li>
+    <li><a href="#parking" data-lang="ja">2. 駐車場</a><a href="#parking" data-lang="en">2. Parking</a></li>
+    <li><a href="#time" data-lang="ja">3. 時間</a><a href="#time" data-lang="en">3. Hours</a></li>
+    <li><a href="#checkout" data-lang="ja">4. チェックアウト</a><a href="#checkout" data-lang="en">4. Check-out</a></li>
+    <li><a href="#life" data-lang="ja">5. ゴミ・買い物</a><a href="#life" data-lang="en">5. Trash &amp; Shopping</a></li>
+    <li><a href="#map" data-lang="ja">6. 地図</a><a href="#map" data-lang="en">6. Map</a></li>
+    <li><a href="#contact" data-lang="ja">7. お問い合わせ</a><a href="#contact" data-lang="en">7. Contact</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <!-- 1. チェックイン -->
+  <section id="checkin">
+    <h2><span class="num">1</span><span data-lang="ja">チェックインの流れ</span><span data-lang="en">How to Check In</span></h2>
+    <p data-lang="ja">孫八はセルフチェックインです。スタッフは常駐していませんので、以下の手順でお入りください。</p>
+    <p data-lang="en">Mago8 is self check-in. No staff is on site, so please follow the steps below.</p>
+
+    <div class="note">
+      <p data-lang="ja"><strong>キーボックスの暗証番号とWi-Fiのパスワード</strong>は、このページには載せていません。ご宿泊の<strong>3日前と前日にメール</strong>でお送りします。</p>
+      <p data-lang="en"><strong>The key box code and Wi-Fi password</strong> are not shown on this page. We will send them by <strong>email 3 days before and the day before</strong> your stay.</p>
+    </div>
+
+    <ol class="steps">
+      <li>
+        <h3 data-lang="ja">坂の入口</h3><h3 data-lang="en">The entrance of the slope</h3>
+        <p data-lang="ja">集落の道から、孫八へ続く坂の入口に入ります。道幅が狭いので、ゆっくりお進みください。</p>
+        <p data-lang="en">Turn into the slope that leads up to Mago8. The road is narrow, so please drive slowly.</p>
+        <figure><div class="photo-placeholder"><span data-lang="ja">写真準備中</span><span data-lang="en">Photo coming soon</span></div>
+          <figcaption data-lang="ja">坂の入口</figcaption><figcaption data-lang="en">Entrance of the slope</figcaption></figure>
+      </li>
+      <li>
+        <h3 data-lang="ja">駐車</h3><h3 data-lang="en">Parking</h3>
+        <p data-lang="ja">坂を登り切った先、または宿の出入口付近に駐車してください（詳しくは「2. 駐車場」）。</p>
+        <p data-lang="en">Park at the top of the slope or near the entrance of the house (see "2. Parking").</p>
+        <figure><div class="photo-placeholder"><span data-lang="ja">写真準備中</span><span data-lang="en">Photo coming soon</span></div>
+          <figcaption data-lang="ja">駐車スペース</figcaption><figcaption data-lang="en">Parking space</figcaption></figure>
+      </li>
+      <li>
+        <h3 data-lang="ja">玄関まで</h3><h3 data-lang="en">Walk to the front door</h3>
+        <p data-lang="ja">駐車スペースから玄関まで歩いて向かいます。</p>
+        <p data-lang="en">Walk from the parking space to the front door.</p>
+        <figure><div class="photo-placeholder"><span data-lang="ja">写真準備中</span><span data-lang="en">Photo coming soon</span></div>
+          <figcaption data-lang="ja">玄関への道</figcaption><figcaption data-lang="en">Path to the front door</figcaption></figure>
+      </li>
+      <li>
+        <h3 data-lang="ja">キーボックスの場所</h3><h3 data-lang="en">Where the key box is</h3>
+        <p data-lang="ja">玄関付近にキーボックスがあります。</p>
+        <p data-lang="en">The key box is near the front door.</p>
+        <figure><div class="photo-placeholder"><span data-lang="ja">写真準備中</span><span data-lang="en">Photo coming soon</span></div>
+          <figcaption data-lang="ja">キーボックスの位置</figcaption><figcaption data-lang="en">Key box location</figcaption></figure>
+      </li>
+      <li>
+        <h3 data-lang="ja">キーボックスの開け方</h3><h3 data-lang="en">How to open the key box</h3>
+        <p data-lang="ja">メールでお送りした暗証番号を合わせて開け、中の鍵で玄関を開けてください。</p>
+        <p data-lang="en">Set the code from our email, open the box, and use the key inside to unlock the front door.</p>
+        <figure><div class="photo-placeholder"><span data-lang="ja">写真準備中</span><span data-lang="en">Photo coming soon</span></div>
+          <figcaption data-lang="ja">キーボックスの開け方</figcaption><figcaption data-lang="en">Opening the key box</figcaption></figure>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 2. 駐車場 -->
+  <section id="parking">
+    <h2><span class="num">2</span><span data-lang="ja">駐車場</span><span data-lang="en">Parking</span></h2>
+    <ul>
+      <li data-lang="ja">坂を登り切った先に <strong>2台以上</strong>、宿の出入口付近に <strong>3台</strong> 停められます。</li>
+      <li data-lang="en"><strong>2 or more cars</strong> at the top of the slope, and <strong>3 cars</strong> near the entrance of the house.</li>
+      <li data-lang="ja">道幅が狭く、坂道です。すれ違いや切り返しにご注意ください。</li>
+      <li data-lang="en">The road is narrow and sloped. Please take care when passing or turning.</li>
+    </ul>
+    <div class="note warn">
+      <p data-lang="ja"><strong>雪の日</strong>：スタッドレスタイヤが必須です。坂の上ではなく、<strong>出入口付近に停めてください</strong>。</p>
+      <p data-lang="en"><strong>On snowy days</strong>: winter (studless) tires are required. Please park <strong>near the entrance</strong>, not at the top of the slope.</p>
+    </div>
+  </section>
+
+  <!-- 3. 時間 -->
+  <section id="time">
+    <h2><span class="num">3</span><span data-lang="ja">チェックイン・チェックアウトの時間</span><span data-lang="en">Check-in / Check-out Hours</span></h2>
+    <dl class="kv">
+      <dt data-lang="ja">チェックイン</dt><dt data-lang="en">Check-in</dt>
+      <dd data-lang="ja">15:00 以降</dd><dd data-lang="en">From 15:00</dd>
+      <dt data-lang="ja">チェックアウト</dt><dt data-lang="en">Check-out</dt>
+      <dd data-lang="ja">11:00 まで</dd><dd data-lang="en">By 11:00</dd>
+    </dl>
+    <p data-lang="ja" style="margin-top:12px;">早めの到着・延長をご希望の場合は、前後のご予約状況によりご相談に応じます。事前にLINEでお問い合わせください。</p>
+    <p data-lang="en" style="margin-top:12px;">Early check-in or late check-out may be possible depending on the bookings before and after yours. Please ask us on LINE in advance.</p>
+  </section>
+
+  <!-- 4. チェックアウト -->
+  <section id="checkout">
+    <h2><span class="num">4</span><span data-lang="ja">チェックアウトの流れ</span><span data-lang="en">How to Check Out</span><span class="draft" data-lang="ja">仮の文</span><span class="draft" data-lang="en">DRAFT</span></h2>
+    <ol class="steps">
+      <li>
+        <h3 data-lang="ja">お部屋の片づけ</h3><h3 data-lang="en">Tidy up</h3>
+        <p data-lang="ja">（仮）使った食器を洗い、ゴミをまとめてください。</p>
+        <p data-lang="en">(Draft) Please wash the dishes you used and gather the trash.</p>
+      </li>
+      <li>
+        <h3 data-lang="ja">戸締まりと電気</h3><h3 data-lang="en">Windows, lights and A/C</h3>
+        <p data-lang="ja">（仮）窓の施錠、電気・エアコン・ストーブの消し忘れをご確認ください。</p>
+        <p data-lang="en">(Draft) Please lock the windows and make sure the lights, A/C and heaters are off.</p>
+      </li>
+      <li>
+        <h3 data-lang="ja">鍵をキーボックスへ</h3><h3 data-lang="en">Return the key</h3>
+        <p data-lang="ja">玄関を施錠し、鍵をキーボックスに戻してください。</p>
+        <p data-lang="en">Lock the front door and return the key to the key box.</p>
+      </li>
+    </ol>
+    <p class="note" data-lang="ja">この章の文面は仮のものです。正式な案内に差し替えます。</p>
+    <p class="note" data-lang="en">This section is a draft and will be replaced with the final instructions.</p>
+  </section>
+
+  <!-- 5. ゴミ・買い物 -->
+  <section id="life">
+    <h2><span class="num">5</span><span data-lang="ja">ゴミ・お買い物</span><span data-lang="en">Trash &amp; Shopping</span></h2>
+    <ul>
+      <li data-lang="ja"><strong>ゴミ</strong>：連泊の方は、外の倉庫へお出しください。</li>
+      <li data-lang="en"><strong>Trash</strong>: If you stay more than one night, please put your trash in the storage shed outside.</li>
+      <li data-lang="ja"><strong>お買い物</strong>：徒歩圏内にお店はありません。食材・飲み物はお越しになる前にご準備ください。</li>
+      <li data-lang="en"><strong>Shopping</strong>: There are no shops within walking distance. Please buy food and drinks before you arrive.</li>
+    </ul>
+  </section>
+
+  <!-- 6. 住所・地図 -->
+  <section id="map">
+    <h2><span class="num">6</span><span data-lang="ja">住所・地図</span><span data-lang="en">Address &amp; Map</span></h2>
+    <p data-lang="ja">〒521-0211　滋賀県米原市梓河内344</p>
+    <p data-lang="en">344 Azusakawachi, Maibara, Shiga 521-0211, Japan</p>
+    <a class="btn map" href="https://maps.app.goo.gl/nEMyf45u5xT4QECF7?g_st=ic" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+      <span data-lang="ja">Googleマップで開く</span><span data-lang="en">Open in Google Maps</span>
+    </a>
+  </section>
+
+  <!-- 7. お問い合わせ -->
+  <section id="contact">
+    <h2><span class="num">7</span><span data-lang="ja">お問い合わせ</span><span data-lang="en">Contact</span></h2>
+    <p data-lang="ja">ご不明な点は、公式LINEからお気軽にどうぞ。</p>
+    <p data-lang="en">If you have any questions, feel free to message us on LINE.</p>
+    <a class="btn line" href="https://line.me/R/ti/p/@391emtjf" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11.1c0 4 3.6 7.4 8.4 8 .3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.6s5.8-3.4 7.9-5.9C21.4 14.6 22 12.9 22 11.1 22 6.6 17.5 3 12 3z"/></svg>
+      <span data-lang="ja">LINEで問い合わせる</span><span data-lang="en">Message us on LINE</span>
+    </a>
+  </section>
+
+</main>
+
+<footer>
+  <p data-lang="ja">古民家宿 孫八　<a href="https://mago8.jp/">公式サイトへ</a></p>
+  <p data-lang="en">Kominka Yado Mago8　<a href="https://mago8.jp/">Official site</a></p>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    function setLang(lang) {
+      root.setAttribute('data-lang', lang);
+      root.setAttribute('lang', lang);
+      document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+        b.setAttribute('aria-pressed', b.getAttribute('data-set-lang') === lang ? 'true' : 'false');
+      });
+      document.title = lang === 'en' ? 'Guest Guide | Kominka Yado Mago8' : 'ご宿泊のご案内 | 古民家宿 孫八';
+      try { localStorage.setItem('mago8_guide_lang', lang); } catch (e) {}
+    }
+    var fromQuery = new URLSearchParams(location.search).get('lang');
+    var saved = null;
+    try { saved = localStorage.getItem('mago8_guide_lang'); } catch (e) {}
+    var initial = fromQuery || saved || ((navigator.language || '').toLowerCase().indexOf('ja') === 0 ? 'ja' : 'en');
+    setLang(initial === 'en' ? 'en' : 'ja');
+    document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+      b.addEventListener('click', function () { setLang(b.getAttribute('data-set-lang')); });
+    });
+  })();
+</script>
+</body>
+</html>
