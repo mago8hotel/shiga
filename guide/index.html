@@ -109,12 +109,13 @@
     figure { margin: 10px 0 0; }
     figure img { width: 100%; height: auto; border-radius: 8px; display: block; }
     figcaption { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
-    .photo-placeholder {
-      width: 100%; aspect-ratio: 4 / 3; border-radius: 8px;
-      border: 2px dashed #d8ccb8; background: repeating-linear-gradient(45deg, #faf6ee, #faf6ee 10px, #f3ecdf 10px, #f3ecdf 20px);
-      display: flex; align-items: center; justify-content: center; text-align: center;
-      color: var(--muted); font-size: 0.9rem; letter-spacing: 0.08em; padding: 12px;
-    }
+    figure.shot a.zoom { display: block; border-radius: 8px; overflow: hidden; border: 1px solid #ece4d6; background: #fff; }
+    figure.shot img { max-width: 100%; }
+    .lb { position: fixed; inset: 0; background: rgba(20,12,6,0.92); display: none; z-index: 100; align-items: center; justify-content: center; flex-direction: column; padding: 12px; }
+    .lb.open { display: flex; }
+    .lb img { max-width: 100%; max-height: calc(100% - 56px); width: auto; height: auto; object-fit: contain; border-radius: 6px; background: #fff; }
+    .lb .lb-cap { color: #f5f0e8; font-size: 0.85rem; margin-top: 10px; text-align: center; }
+    .lb .lb-close { position: absolute; top: 10px; right: 12px; width: 40px; height: 40px; border-radius: 50%; border: 0; background: rgba(255,255,255,0.15); color: #fff; font-size: 24px; line-height: 1; cursor: pointer; }
 
     .note {
       margin-top: 12px; padding: 12px 14px; border-radius: 8px;
@@ -176,8 +177,9 @@
     <li><a href="#time" data-lang="ja">3. 時間</a><a href="#time" data-lang="en">3. Hours</a></li>
     <li><a href="#checkout" data-lang="ja">4. チェックアウト</a><a href="#checkout" data-lang="en">4. Check-out</a></li>
     <li><a href="#life" data-lang="ja">5. ゴミ・買い物</a><a href="#life" data-lang="en">5. Trash &amp; Shopping</a></li>
-    <li><a href="#map" data-lang="ja">6. 地図</a><a href="#map" data-lang="en">6. Map</a></li>
-    <li><a href="#contact" data-lang="ja">7. お問い合わせ</a><a href="#contact" data-lang="en">7. Contact</a></li>
+    <li><a href="#area" data-lang="ja">6. 周辺・間取り</a><a href="#area" data-lang="en">6. Nearby &amp; Floor plan</a></li>
+    <li><a href="#map" data-lang="ja">7. 地図</a><a href="#map" data-lang="en">7. Map</a></li>
+    <li><a href="#contact" data-lang="ja">8. お問い合わせ</a><a href="#contact" data-lang="en">8. Contact</a></li>
   </ol>
 </nav>
 
@@ -190,49 +192,37 @@
     <p data-lang="en">Mago8 is self check-in. No staff is on site, so please follow the steps below.</p>
 
     <div class="note">
-      <p data-lang="ja"><strong>キーボックスの暗証番号とWi-Fiのパスワード</strong>は、このページには載せていません。<strong>ご宿泊の3日前に、メール、またはご予約サイト（Airbnb・Booking.com）のメッセージ</strong>でお送りします。</p>
-      <p data-lang="en"><strong>The key box code and Wi-Fi password</strong> are not shown on this page. We will send them <strong>3 days before your stay, by email or by message on your booking site (Airbnb / Booking.com)</strong>.</p>
+      <p data-lang="ja"><strong>キーボックスの暗証番号とWi-Fiのパスワード</strong>は、このページには載せていません。<strong>ご宿泊の2〜3日前に、メール、またはご予約サイト（Airbnb・Booking.com）のメッセージ</strong>でお送りします。</p>
+      <p data-lang="en"><strong>The key box code and Wi-Fi password</strong> are not shown on this page. We will send them <strong>2–3 days before your stay, by email or by message on your booking site (Airbnb / Booking.com)</strong>.</p>
     </div>
+
+    <figure class="shot"><a href="img/g1-route.webp" class="zoom" data-caption-ja="宿までの道順" data-caption-en="Directions to the house"><img src="img/g1-route-s.webp" alt="宿までの道順" loading="lazy"></a><figcaption data-lang="ja">宿までの道順（タップで拡大）</figcaption><figcaption data-lang="en">Directions to the house (tap to enlarge)</figcaption></figure>
 
     <ol class="steps">
       <li>
         <h3 data-lang="ja">坂の入口</h3><h3 data-lang="en">The entrance of the slope</h3>
         <p data-lang="ja">集落の道から、孫八へ続く坂の入口に入ります。道幅が狭いので、ゆっくりお進みください。</p>
         <p data-lang="en">Turn into the slope that leads up to Mago8. The road is narrow, so please drive slowly.</p>
-        <figure data-photo="1_坂の入口.jpg"><div class="photo-placeholder"><span data-lang="ja">写真準備中</span><span data-lang="en">Photo coming soon</span></div>
-          <figcaption data-lang="ja">坂の入口</figcaption><figcaption data-lang="en">Entrance of the slope</figcaption></figure>
       </li>
       <li>
         <h3 data-lang="ja">駐車</h3><h3 data-lang="en">Parking</h3>
         <p data-lang="ja">坂を登り切った先、または宿の出入口付近に駐車してください（詳しくは「2. 駐車場」）。</p>
         <p data-lang="en">Park at the top of the slope or near the entrance of the house (see "2. Parking").</p>
-        <figure data-photo="2_坂の上の駐車場.jpg"><div class="photo-placeholder"><span data-lang="ja">写真準備中</span><span data-lang="en">Photo coming soon</span></div>
-          <figcaption data-lang="ja">坂の上の駐車場</figcaption><figcaption data-lang="en">Parking at the top of the slope</figcaption></figure>
       </li>
       <li>
         <h3 data-lang="ja">玄関まで</h3><h3 data-lang="en">Walk to the front door</h3>
         <p data-lang="ja">駐車スペースから玄関まで歩いて向かいます。</p>
         <p data-lang="en">Walk from the parking space to the front door.</p>
-        <figure data-photo="4_玄関までの道.jpg"><div class="photo-placeholder"><span data-lang="ja">写真準備中</span><span data-lang="en">Photo coming soon</span></div>
-          <figcaption data-lang="ja">玄関までの道</figcaption><figcaption data-lang="en">Path to the front door</figcaption></figure>
       </li>
       <li>
         <h3 data-lang="ja">キーボックスの場所</h3><h3 data-lang="en">Where the key box is</h3>
-        <p data-lang="ja">玄関付近にキーボックスがあります。</p>
-        <p data-lang="en">The key box is near the front door.</p>
-        <figure data-photo="5_玄関.jpg"><div class="photo-placeholder"><span data-lang="ja">写真準備中</span><span data-lang="en">Photo coming soon</span></div>
-          <figcaption data-lang="ja">玄関とキーボックスの位置</figcaption><figcaption data-lang="en">Front door and key box location</figcaption></figure>
+        <p data-lang="ja">キーボックスは玄関の横に設置しています。</p>
+        <p data-lang="en">The key box is next to the front door.</p>
       </li>
       <li>
         <h3 data-lang="ja">キーボックスの開け方</h3><h3 data-lang="en">How to open the key box</h3>
         <p data-lang="ja">事前にお送りした暗証番号を合わせて開け、中の鍵で玄関を開けてください。</p>
         <p data-lang="en">Set the code we sent you, open the box, and use the key inside to unlock the front door.</p>
-        <div class="photo-grid">
-          <figure data-photo="6_キーボックス.jpg"><div class="photo-placeholder"><span data-lang="ja">写真準備中</span><span data-lang="en">Photo coming soon</span></div>
-          <figcaption data-lang="ja">キーボックス</figcaption><figcaption data-lang="en">The key box</figcaption></figure>
-          <figure data-photo="7_キーボックスの開け方.jpg"><div class="photo-placeholder"><span data-lang="ja">写真準備中</span><span data-lang="en">Photo coming soon</span></div>
-          <figcaption data-lang="ja">キーボックスの開け方</figcaption><figcaption data-lang="en">Opening the key box</figcaption></figure>
-        </div>
       </li>
     </ol>
   </section>
@@ -250,8 +240,10 @@
       <p data-lang="ja"><strong>雪の日</strong>：スタッドレスタイヤが必須です。坂の上ではなく、<strong>出入口付近に停めてください</strong>。</p>
       <p data-lang="en"><strong>On snowy days</strong>: winter tires (snow tires) are required. Please park <strong>near the entrance</strong>, not at the top of the slope.</p>
     </div>
-    <figure data-photo="3_出入口付近の駐車場.jpg"><div class="photo-placeholder"><span data-lang="ja">写真準備中</span><span data-lang="en">Photo coming soon</span></div>
-          <figcaption data-lang="ja">宿の出入口付近の駐車場（雪の日はこちらへ）</figcaption><figcaption data-lang="en">Parking near the entrance (use this on snowy days)</figcaption></figure>
+    <div class="photo-grid">
+      <figure class="shot"><a href="img/g2-parking.webp" class="zoom" data-caption-ja="駐車場の写真" data-caption-en="Parking spaces"><img src="img/g2-parking-s.webp" alt="駐車場の写真" loading="lazy"></a><figcaption data-lang="ja">駐車場の写真（タップで拡大）</figcaption><figcaption data-lang="en">Parking spaces (tap to enlarge)</figcaption></figure>
+      <figure class="shot"><a href="img/g8-parking-map.webp" class="zoom" data-caption-ja="駐車場の地図（駐車OK・禁止の場所）" data-caption-en="Parking map (OK / no-parking areas)"><img src="img/g8-parking-map-s.webp" alt="駐車場の地図（駐車OK・禁止の場所）" loading="lazy"></a><figcaption data-lang="ja">駐車場の地図（駐車OK・禁止の場所）（タップで拡大）</figcaption><figcaption data-lang="en">Parking map (OK / no-parking areas) (tap to enlarge)</figcaption></figure>
+    </div>
   </section>
 
   <!-- 3. 時間 -->
@@ -299,6 +291,7 @@
         <p data-lang="en">Lock the front door and return the key to the key box.</p>
       </li>
     </ol>
+    <figure class="shot"><a href="img/g7-checkout.webp" class="zoom" data-caption-ja="チェックアウト時のお願い" data-caption-en="Check-out reminders"><img src="img/g7-checkout-s.webp" alt="チェックアウト時のお願い" loading="lazy"></a><figcaption data-lang="ja">チェックアウト時のお願い（タップで拡大）</figcaption><figcaption data-lang="en">Check-out reminders (tap to enlarge)</figcaption></figure>
     <div class="note warn">
       <p data-lang="ja"><strong>忘れ物にご注意ください。</strong>特に、充電器・衣類・冷蔵庫の中・洗面所・お風呂場を、今一度ご確認ください。</p>
       <p data-lang="en"><strong>Please check for forgotten items.</strong> In particular: chargers, clothes, the inside of the fridge, the washroom and the bathroom.</p>
@@ -314,13 +307,23 @@
       <li data-lang="ja"><strong>お買い物</strong>：徒歩圏内にお店はありません。食材・飲み物はお越しになる前にご準備ください。</li>
       <li data-lang="en"><strong>Shopping</strong>: There are no shops within walking distance. Please buy food and drinks before you arrive.</li>
     </ul>
-    <figure data-photo="8_ゴミの倉庫.jpg"><div class="photo-placeholder"><span data-lang="ja">写真準備中</span><span data-lang="en">Photo coming soon</span></div>
-          <figcaption data-lang="ja">外の倉庫（古家）</figcaption><figcaption data-lang="en">Outdoor storage shed (the old house)</figcaption></figure>
+    <figure class="shot"><a href="img/g6-trash.webp" class="zoom" data-caption-ja="連泊のお客様へ（タオル・ゴミの倉庫）" data-caption-en="For multi-night guests (towels and the trash shed)"><img src="img/g6-trash-s.webp" alt="連泊のお客様へ（タオル・ゴミの倉庫）" loading="lazy"></a><figcaption data-lang="ja">連泊のお客様へ（タオル・ゴミの倉庫）（タップで拡大）</figcaption><figcaption data-lang="en">For multi-night guests (towels and the trash shed) (tap to enlarge)</figcaption></figure>
   </section>
 
-  <!-- 6. 住所・地図 -->
+  <!-- 6. 周辺情報・間取り -->
+  <section id="area">
+    <h2><span class="num">6</span><span data-lang="ja">周辺情報・お部屋の間取り</span><span data-lang="en">Nearby Places &amp; Floor Plan</span></h2>
+    <p data-lang="ja">周辺の飲食店・コンビニの地図と、お部屋の間取りです。画像をタップすると拡大できます。</p>
+    <p data-lang="en">A map of nearby restaurants and the convenience store, and the floor plan of the house. Tap an image to enlarge it.</p>
+    <div class="photo-grid">
+      <figure class="shot"><a href="img/g4-food-map.webp" class="zoom" data-caption-ja="周辺の飲食店マップ" data-caption-en="Map of nearby restaurants"><img src="img/g4-food-map-s.webp" alt="周辺の飲食店マップ" loading="lazy"></a><figcaption data-lang="ja">周辺の飲食店マップ（タップで拡大）</figcaption><figcaption data-lang="en">Map of nearby restaurants (tap to enlarge)</figcaption></figure>
+      <figure class="shot"><a href="img/g5-floorplan.webp" class="zoom" data-caption-ja="お部屋の間取り図" data-caption-en="Floor plan"><img src="img/g5-floorplan-s.webp" alt="お部屋の間取り図" loading="lazy"></a><figcaption data-lang="ja">お部屋の間取り図（タップで拡大）</figcaption><figcaption data-lang="en">Floor plan (tap to enlarge)</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 7. 住所・地図 -->
   <section id="map">
-    <h2><span class="num">6</span><span data-lang="ja">住所・地図</span><span data-lang="en">Address &amp; Map</span></h2>
+    <h2><span class="num">7</span><span data-lang="ja">住所・地図</span><span data-lang="en">Address &amp; Map</span></h2>
     <p data-lang="ja">〒521-0211　滋賀県米原市梓河内344</p>
     <p data-lang="en">344 Azusakawachi, Maibara, Shiga 521-0211, Japan</p>
     <a class="btn map" href="https://maps.app.goo.gl/nEMyf45u5xT4QECF7?g_st=ic" target="_blank" rel="noopener">
@@ -329,9 +332,9 @@
     </a>
   </section>
 
-  <!-- 7. お問い合わせ -->
+  <!-- 8. お問い合わせ -->
   <section id="contact">
-    <h2><span class="num">7</span><span data-lang="ja">お問い合わせ</span><span data-lang="en">Contact</span></h2>
+    <h2><span class="num">8</span><span data-lang="ja">お問い合わせ</span><span data-lang="en">Contact</span></h2>
     <p data-lang="ja">ご不明な点は、公式LINEからお気軽にどうぞ。</p>
     <p data-lang="en">If you have any questions, feel free to message us on LINE.</p>
     <a class="btn line" href="https://line.me/R/ti/p/@391emtjf" target="_blank" rel="noopener">
@@ -341,6 +344,12 @@
   </section>
 
 </main>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="画像の拡大表示">
+  <button type="button" class="lb-close" id="lbClose" aria-label="閉じる">×</button>
+  <img id="lbImg" src="" alt="">
+  <div class="lb-cap" id="lbCap"></div>
+</div>
 
 <footer>
   <p data-lang="ja">古民家宿 孫八　<a href="https://mago8.jp/">公式サイトへ</a></p>
@@ -367,6 +376,24 @@
     document.querySelectorAll('[data-set-lang]').forEach(function (b) {
       b.addEventListener('click', function () { setLang(b.getAttribute('data-set-lang')); });
     });
+
+    // 画像の拡大表示
+    var lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap');
+    function closeLb() { lb.classList.remove('open'); lbImg.src = ''; document.body.style.overflow = ''; }
+    document.querySelectorAll('a.zoom').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var lang = root.getAttribute('data-lang') || 'ja';
+        lbImg.src = a.getAttribute('href');
+        lbImg.alt = a.getAttribute('data-caption-' + lang) || '';
+        lbCap.textContent = lbImg.alt;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    document.getElementById('lbClose').addEventListener('click', closeLb);
+    lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
   })();
 </script>
 </body>
