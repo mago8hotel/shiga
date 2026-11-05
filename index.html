@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>古民家宿 孫八｜滋賀・米原の一棟貸し(最大15名)</title>
-  <meta name="description" content="滋賀県米原市の一棟貸し古民家「孫八」。築120年・5LDK、最大15名。JR米原駅から車で約20分、京都市内から約1時間30分。BBQ・洞窟探検など無料の体験も充実した貸切宿です。">
+  <meta name="description" content="滋賀県米原市の一棟貸し古民家「孫八」。築120年・5LDK、最大15名。JR米原駅から車で約20分、京都市内から約1時間30分。BBQ（4月〜10月限定）・洞窟探検など無料の体験も充実した貸切宿です。">
   <meta property="og:title" content="古民家宿 孫八｜滋賀・米原の一棟貸し(最大15名)">
-  <meta property="og:description" content="滋賀県米原市の一棟貸し古民家「孫八」。築120年・5LDK、最大15名。JR米原駅から車で約20分、京都市内から約1時間30分。BBQ・洞窟探検など無料の体験も充実した貸切宿です。">
+  <meta property="og:description" content="滋賀県米原市の一棟貸し古民家「孫八」。築120年・5LDK、最大15名。JR米原駅から車で約20分、京都市内から約1時間30分。BBQ（4月〜10月限定）・洞窟探検など無料の体験も充実した貸切宿です。">
   <meta property="og:image" content="https://mago8.jp/samune.jpg">
   <meta property="og:url" content="https://mago8.jp/">
   <meta property="og:type" content="website">
@@ -20,7 +20,7 @@
     "@type": "LodgingBusiness",
     "name": "古民家宿 孫八",
     "alternateName": "Mago8",
-    "description": "滋賀県米原市・築120年の古民家を一棟貸切。最大15名宿泊可能。里山の自然と歴史に囲まれた隠れ家宿。BBQ・洞窟探検・川遊びなど体験も充実。",
+    "description": "滋賀県米原市・築120年の古民家を一棟貸切。最大15名宿泊可能。里山の自然と歴史に囲まれた隠れ家宿。BBQ（4月〜10月限定）・洞窟探検・川遊びなど体験も充実。",
     "url": "https://mago8.jp/",
     "image": "https://mago8.jp/samune.jpg",
     "telephone": "+81-50-1725-0960",
@@ -39,7 +39,7 @@
       { "@type": "LocationFeatureSpecification", "name": "Wi-Fi", "value": true },
       { "@type": "LocationFeatureSpecification", "name": "エアコン", "value": true },
       { "@type": "LocationFeatureSpecification", "name": "洗濯機・乾燥機", "value": true },
-      { "@type": "LocationFeatureSpecification", "name": "バーベキュー設備", "value": true }
+      { "@type": "LocationFeatureSpecification", "name": "バーベキュー設備（4月〜10月限定）", "value": true }
     ],
     "checkinTime": "15:00",
     "checkoutTime": "11:00",
@@ -699,6 +699,8 @@
     }
     .line-btn:hover { background: #05b34c; }
     .line-btn svg { flex-shrink: 0; }
+    .cta .cta-line-lead { margin: 28px 0 6px; color: var(--gold); font-size: 1.05rem; letter-spacing: 0.08em; }
+    .cta .line-btn { padding: 16px 44px; }
 
     .line-section {
       background: var(--cream);
@@ -1129,11 +1131,18 @@
         <img src="assets/images/gyara-thumb.webp" alt="木工ギャラリー" data-lb data-full="gyara.jpg" loading="lazy">
         <div class="exp-body">
           <h3>木工ギャラリー見学・購入 <span class="badge-yoyaku">要予約</span></h3>
-          <p>地元の木工職人による作品を展示・販売。手仕事の温もりが感じられる一点物の木工品をご覧いただけます。お気に入りの作品はその場でご購入も可能です。</p>
+          <p>近くの guri an gura工房にある木工ギャラリーです。地元の木工職人による作品を展示・販売。手仕事の温もりが感じられる一点物の木工品をご覧いただけます。お気に入りの作品はその場でご購入も可能です。</p>
           <button class="exp-detail-btn" onclick="toggleDetail(this)">詳細を見る ▼</button>
           <div class="exp-detail-panel">
             <img src="ok.jpg" alt="木工ギャラリー 詳細" data-lb loading="lazy">
           </div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <img src="assets/images/stamp2-thumb.webp" alt="孫八プチギャラリー" data-lb data-full="stamp2.jpg" loading="lazy">
+        <div class="exp-body">
+          <h3>孫八プチギャラリー</h3>
+          <p>館内のプチギャラリーに、近くの guri an gura工房の木工作品を飾っています。ご宿泊中はご自由にご覧いただけます。気に入った作品は、工房の方がいらっしゃるときに工房でご購入いただけます。</p>
         </div>
       </div>
       <div class="exp-item">
@@ -1151,14 +1160,15 @@
         </div>
       </div>
       <div class="exp-item">
-        <img src="assets/images/BBQ1-thumb.webp" alt="バーベキュー体験" data-lb data-full="BBQ1.jpg" loading="lazy">
+        <img src="assets/images/BBQ1-thumb.webp" alt="バーベキュー体験（4月〜10月限定）" data-lb data-full="BBQ1.jpg" loading="lazy">
         <div class="exp-body">
-          <h3>バーベキュー体験 <span class="badge-yoyaku">要予約</span><span class="badge-new">NEW</span></h3>
-          <p>専用ガスバーベキューグリルと専用グリルプレートを完備。食材はお持ち込みください。ご利用は8:00〜20:00、指定スペースのみ。無料でご利用いただけます。<br>※炭を使用したバーベキューは山火事防止のため禁止しております。</p>
+          <h3>バーベキュー体験<span style="white-space:nowrap;">（4月〜10月限定）</span> <span class="badge-yoyaku">要予約</span></h3>
+          <p><strong>バーベキュー（BBQ）は<span style="white-space:nowrap;">4月〜10月限定</span>です。<span style="white-space:nowrap;">11月〜3月</span>は冬期のためお休みしています。</strong><br>専用ガスバーベキューグリルと専用グリルプレートを完備。食材はお持ち込みください。ご利用は8:00〜20:00、指定スペースのみ。無料でご利用いただけます。<br>※炭を使用したバーベキューは山火事防止のため禁止しております。</p>
           <button class="exp-detail-btn" onclick="toggleDetail(this)">詳細を見る ▼</button>
           <div class="exp-detail-panel">
-            <img src="BBQ1.jpg" alt="BBQご案内1" data-lb style="margin-bottom:8px;" loading="lazy">
-            <img src="BBQ2.jpg" alt="BBQご案内2" data-lb loading="lazy">
+            <p style="margin-bottom:10px; color:var(--gold);">※BBQは4月〜10月限定です（11月〜3月は冬期のためお休み）</p>
+            <img src="BBQ1.jpg" alt="BBQご案内1（4月〜10月限定）" data-lb style="margin-bottom:8px;" loading="lazy">
+            <img src="BBQ2.jpg" alt="BBQご案内2（4月〜10月限定）" data-lb loading="lazy">
           </div>
         </div>
       </div>
@@ -1206,8 +1216,8 @@
       <span class="section-label">LINE OFFICIAL</span>
       <h2>ご質問はLINEで<br>24時間お気軽に</h2>
       <p>宿泊・設備・アクセス・周辺観光など、どんな些細なことでもLINEで24時間ご相談を受け付けています。予約前の方もお気軽にどうぞ。</p>
-      <p>宿泊予約をされた方は、洞窟・里山散策体験やBBQのご相談もLINEで承ります。</p>
-      <p class="line-note">※洞窟・里山散策体験・BBQのご予約は宿泊者の方限定です。</p>
+      <p>宿泊予約をされた方は、洞窟・里山散策体験やBBQ（4月〜10月限定）のご相談もLINEで承ります。</p>
+      <p class="line-note">※洞窟・里山散策体験・BBQ（4月〜10月限定）のご予約は宿泊者の方限定です。</p>
     </div>
     <div class="line-section-cta">
       <a href="https://lin.ee/QRVGjZa" class="line-btn" target="_blank" rel="noopener">
@@ -1240,7 +1250,7 @@
         </div>
         <ul style="margin-top:0">
           <li>５LDK</li>
-          <li>最大15名まで宿泊可能（柔軟に対応いたします。詳しくはお問い合わせください）</li>
+          <li>最大15名まで宿泊可能（柔軟に対応いたします。詳しくは<a href="https://lin.ee/QRVGjZa" target="_blank" rel="noopener" style="color:var(--brown); text-decoration:underline; text-underline-offset:3px;">公式LINEでお気軽にお問い合わせ<span style="white-space:nowrap;">ください</span></a>）</li>
           <li>インターネット完備</li>
           <li>夏：エアコン・扇風機完備</li>
           <li>冬：こたつ・ストーブ・湯たんぽ完備</li>
@@ -1249,6 +1259,9 @@
         <div class="exp-detail-panel">
           <img src="toi1.jpg" alt="トイレ1" data-lb style="margin-bottom: 8px;" loading="lazy">
           <img src="toi2.jpg" alt="トイレ2" data-lb loading="lazy">
+        </div>
+        <div class="amenity-info" style="margin-top:16px; margin-bottom:0;">
+          <p>冬はこたつ・ヒーター（灯油ストーブ・エアコン暖房）・湯たんぽをご用意。古民家で、ぬくぬくの冬時間をお過ごしください。</p>
         </div>
       </div>
       <div class="amenity-group">
@@ -1531,7 +1544,7 @@
           <li>セルフチェックインのみ</li>
         </ul>
         <p style="margin-top:14px; font-size:0.9rem; font-weight:bold; color:var(--brown);">■ アーリーチェックインについて</p>
-        <p style="font-size:0.88rem; margin-bottom:0;">アーリーチェックイン・レイトチェックアウトは承っておりませんが、前日・翌日の宿泊状況によって柔軟に対応いたします。詳しくはお問い合わせください。</p>
+        <p style="font-size:0.88rem; margin-bottom:0;">アーリーチェックイン・レイトチェックアウトは承っておりませんが、前日・翌日の宿泊状況によって柔軟に対応いたします。詳しくは<a href="https://lin.ee/QRVGjZa" target="_blank" rel="noopener" style="color:var(--brown); text-decoration:underline; text-underline-offset:3px;">公式LINEでお気軽にお問い合わせください</a>。</p>
       </div>
       <div class="info-box">
         <h3>禁煙・ルール</h3>
@@ -1566,7 +1579,7 @@
         <ul>
           <li>手持ち花火のみ可能です</li>
           <li>ロケット花火・打ち上げ花火・音の大きい花火はご遠慮ください</li>
-          <li>花火はバーベキュー可能スペースで行ってください</li>
+          <li>花火はバーベキュー用の指定スペースで行ってください</li>
           <li>必ず消火用バケツに水を入れ、火の始末をお願いします</li>
         </ul>
       </div>
@@ -1581,6 +1594,7 @@
     <h2>ご予約・お問い合わせ</h2>
     <p>公式サイトよりご予約いただけます。<br>最新情報・お得な情報は公式SNSをご覧ください。</p>
     <a href="https://beds24.com/booking2.php?propid=344052&lang=ja" class="cta-btn" target="_blank" rel="noopener">空室を確認・予約する</a>
+    <p class="cta-line-lead">お問い合わせは公式LINEが一番早くお返事できます</p>
     <a href="https://lin.ee/QRVGjZa" class="line-btn" target="_blank" rel="noopener">
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect width="22" height="22" rx="5" fill="#fff" fill-opacity="0.2"/>
